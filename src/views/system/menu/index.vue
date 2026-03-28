@@ -474,15 +474,23 @@ export default {
               this.$modal.msgSuccess("修改成功")
               this.open = false
               this.getList()
+              this.refreshRoutes()
             })
           } else {
             addMenu(this.form).then(() => {
               this.$modal.msgSuccess("新增成功")
               this.open = false
               this.getList()
+              this.refreshRoutes()
             })
           }
         }
+      })
+    },
+    /** 刷新路由 */
+    refreshRoutes() {
+      this.$store.dispatch('RefreshRoutes').then(() => {
+        this.$modal.msgSuccess("菜单已更新，路由已刷新")
       })
     },
     /** 递归记录原始排序 */
@@ -517,6 +525,7 @@ export default {
       updateMenuSort({ menuIds: changedMenuIds.join(","), orderNums: changedOrderNums.join(",") }).then(() => {
         this.$modal.msgSuccess("排序保存成功")
         this.recordOriginalOrders(this.menuList)
+        this.refreshRoutes()
       })
     },
     /** 删除按钮操作 */
@@ -526,6 +535,7 @@ export default {
       }).then(() => {
         this.getList()
         this.$modal.msgSuccess("删除成功")
+        this.refreshRoutes()
       }).catch(() => {})
     }
   }

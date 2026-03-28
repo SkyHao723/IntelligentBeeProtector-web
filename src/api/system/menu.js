@@ -1,69 +1,113 @@
-import request from '@/utils/request'
+import {
+  getMenuData,
+  saveMenuData,
+  getNextMenuId,
+  findMenuById,
+  addMenuToData,
+  updateMenuInData,
+  deleteMenuFromData,
+  getFlatMenuList
+} from '@/utils/menuStorage'
 
-// 查询菜单列表
 export function listMenu(query) {
-  return request({
-    url: '/system/menu/list',
-    method: 'get',
-    params: query
+  return new Promise(resolve => {
+    let menuData = getMenuData()
+    if (query && query.menuName) {
+      const flatList = getFlatMenuList(menuData)
+      const filtered = flatList.filter(item =>
+        item.menuName && item.menuName.includes(query.menuName)
+      )
+      resolve({ data: filtered })
+    } else if (query && query.status) {
+      const flatList = getFlatMenuList(menuData)
+      const filtered = flatList.filter(item => item.status === query.status)
+      resolve({ data: filtered })
+    } else {
+      resolve({ data: menuData })
+    }
   })
 }
 
-// 查询菜单详细
 export function getMenu(menuId) {
-  return request({
-    url: '/system/menu/' + menuId,
-    method: 'get'
+  return new Promise((resolve, reject) => {
+    const menuData = getMenuData()
+    const menu = findMenuById(menuData, menuId)
+    if (menu) {
+      resolve({ data: menu })
+    } else {
+      reject({ msg: '菜单不存在' })
+    }
   })
 }
 
-// 查询菜单下拉树结构
 export function treeselect() {
-  return request({
-    url: '/system/menu/treeselect',
-    method: 'get'
+  return new Promise(resolve => {
+    const menuData = getMenuData()
+    resolve({ data: menuData })
   })
 }
 
-// 根据角色ID查询菜单下拉树结构
 export function roleMenuTreeselect(roleId) {
-  return request({
-    url: '/system/menu/roleMenuTreeselect/' + roleId,
-    method: 'get'
+  return new Promise(resolve => {
+    const menuData = getMenuData()
+    resolve({
+      data: menuData,
+      checkedKeys: menuData.map(m => m.menuId)
+    })
   })
 }
 
-// 新增菜单
 export function addMenu(data) {
-  return request({
-    url: '/system/menu',
-    method: 'post',
-    data: data
+  return new Promise(resolve => {
+    const menu = {
+      ...data,
+      menuId: getNextMenuId(),
+      createTime: new Date().toLocaleString().replace(/\//g, '-'),
+      createBy: 'admin'
+    }
+    addMenuToData(menu)
+    resolve({ code: 200, msg: '新增成功' })
   })
 }
 
-// 修改菜单
 export function updateMenu(data) {
-  return request({
-    url: '/system/menu',
-    method: 'put',
-    data: data
+  return new Promise((resolve, reject) => {
+    const result = updateMenuInData(data)
+    if (result) {
+      resolve({ code: 200, msg: '修改成功' })
+    } else {
+      reject({ msg: '菜单不存在' })
+    }
   })
 }
 
-// 保存菜单排序
 export function updateMenuSort(data) {
-  return request({
-    url: '/system/menu/updateSort',
-    method: 'put',
-    data: data
+  return new Promise(resolve => {
+    if (data.menuIds && data.orderNums) {
+      const menuIds = data.menuIds.split(',')
+      const orderNums = data.orderNums.split(',')
+      const menuData = getMenuData()
+
+      menuIds.forEach((id, index) => {
+        const menu = findMenuById(menuData, parseInt(id))
+        if (menu) {
+          menu.orderNum = parseInt(orderNums[index])
+        }
+      })
+
+      saveMenuData(menuData)
+    }
+    resolve({ code: 200, msg: '排序保存成功' })
   })
 }
 
-// 删除菜单
 export function delMenu(menuId) {
-  return request({
-    url: '/system/menu/' + menuId,
-    method: 'delete'
+  return new Promise((resolve, reject) => {
+    const result = deleteMenuFromData(menuId)
+    if (result) {
+      resolve({ code: 200, msg: '删除成功' })
+    } else {
+      reject({ msg: '菜单不存在' })
+    }
   })
 }
