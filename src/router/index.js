@@ -68,25 +68,13 @@ export const constantRoutes = [
     children: [
       {
         path: 'index',
-        component: () => import('@/views/index'),
-        name: 'Index',
+        component: () => import('@/views/homePage/index'),
+        name: 'HomePage',
         meta: { title: '首页', icon: 'dashboard', affix: true }
       }
     ]
   },
-  {
-    path: '/homePage',
-    component: Layout,
-    hidden: true,
-    children: [
-      {
-        path: '',
-        component: () => import('@/views/homePage/index'),
-        name: 'HomePage',
-        meta: { title: '首页', icon: 'dashboard' }
-      }
-    ]
-  },
+  // '/homePage' 路由已合并为根路径的子路由
   {
     path: '/monitorPage',
     component: Layout,
@@ -126,19 +114,7 @@ export const constantRoutes = [
       }
     ]
   },
-  {
-    path: '/about',
-    component: Layout,
-    hidden: true,
-    children: [
-      {
-        path: '',
-        component: () => import('@/views/about/index'),
-        name: 'About',
-        meta: { title: '关于我们', icon: 'info' }
-      }
-    ]
-  },
+ 
   {
     path: '/help',
     component: Layout,
