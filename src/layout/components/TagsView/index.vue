@@ -1,68 +1,5 @@
 <template>
-  <div id="tags-view-container" class="tags-view-container">
-    <!-- 左切换箭头 -->
-    <span class="tags-nav-btn tags-nav-btn--left" :class="{ disabled: !canScrollLeft }" @click="scrollLeft">
-      <i class="el-icon-arrow-left" />
-    </span>
 
-    <!-- 标签滚动区 -->
-    <scroll-pane ref="scrollPane" class="tags-view-wrapper" @scroll="handleScroll" @updateArrows="updateArrowState">
-      <router-link
-        v-for="tag in visitedViews"
-        ref="tag"
-        :key="tag.path"
-        :class="{ 'active': isActive(tag), 'has-icon': tagsIcon }"
-        :to="{ path: tag.path, query: tag.query, fullPath: tag.fullPath }"
-        tag="span"
-        class="tags-view-item"
-        :style="activeStyle(tag)"
-        @click.middle.native="!isAffix(tag) ? closeSelectedTag(tag) : ''"
-        @contextmenu.prevent.native="openMenu(tag, $event)"
-      >
-        <svg-icon v-if="tagsIcon && tag.meta && tag.meta.icon && tag.meta.icon !== '#'" :icon-class="tag.meta.icon" />
-        {{ tag.title }}
-        <span v-if="!isAffix(tag)" class="el-icon-close" @click.prevent.stop="closeSelectedTag(tag)" />
-      </router-link>
-    </scroll-pane>
-
-    <!-- 右切换箭头 -->
-    <span class="tags-nav-btn tags-nav-btn--right" :class="{ disabled: !canScrollRight }" @click="scrollRight">
-      <i class="el-icon-arrow-right" />
-    </span>
-
-    <!-- 下拉操作菜单 -->
-    <el-dropdown class="tags-action-dropdown" trigger="click" placement="bottom-end" @command="handleDropdownCommand">
-      <span class="tags-action-btn">
-        <i class="el-icon-arrow-down" />
-      </span>
-      <el-dropdown-menu slot="dropdown" class="tags-dropdown-menu">
-        <el-dropdown-item v-if="!isAffix(selectedDropdownTag)" command="close" icon="el-icon-close">关闭当前</el-dropdown-item>
-        <el-dropdown-item command="closeOthers" icon="el-icon-circle-close">关闭其他</el-dropdown-item>
-        <el-dropdown-item command="closeLeft" :disabled="isFirstView()" icon="el-icon-back">关闭左侧</el-dropdown-item>
-        <el-dropdown-item command="closeRight" :disabled="isLastView()" icon="el-icon-right">关闭右侧</el-dropdown-item>
-        <el-dropdown-item command="closeAll" icon="el-icon-circle-close">全部关闭</el-dropdown-item>
-        <el-dropdown-item command="fullscreen" divided>
-          <template v-if="!isFullscreen"><i class="el-icon-full-screen"></i>全屏显示</template>
-          <template v-else><i class="el-icon-close"></i>退出全屏</template>
-        </el-dropdown-item>
-      </el-dropdown-menu>
-    </el-dropdown>
-
-    <!-- 刷新按钮 -->
-    <span class="tags-action-btn tags-refresh-btn" title="刷新页面" @click="refreshSelectedTag(selectedDropdownTag)">
-      <i class="el-icon-refresh-right" /> 刷新
-    </span>
-
-    <!-- 右键上下文菜单 -->
-    <ul v-show="visible" :style="{ left: left + 'px', top: top + 'px' }" class="contextmenu">
-      <li @click="refreshSelectedTag(selectedTag)"><i class="el-icon-refresh-right"></i> 刷新页面</li>
-      <li v-if="!isAffix(selectedTag)" @click="closeSelectedTag(selectedTag)"><i class="el-icon-close"></i> 关闭当前</li>
-      <li @click="closeOthersTags"><i class="el-icon-circle-close"></i> 关闭其他</li>
-      <li v-if="!isFirstView()" @click="closeLeftTags"><i class="el-icon-back"></i> 关闭左侧</li>
-      <li v-if="!isLastView()" @click="closeRightTags"><i class="el-icon-right"></i> 关闭右侧</li>
-      <li @click="closeAllTags(selectedTag)"><i class="el-icon-circle-close"></i> 全部关闭</li>
-    </ul>
-  </div>
 </template>
 
 <script>
@@ -244,7 +181,7 @@ export default {
         mainContainer.classList.add('fullscreen-mode')
         document.body.style.overflow = 'hidden'
         const elementsToHide = [
-          { el: navbar, originalDisplay: (navbar && navbar.style.display) || '' }, 
+          { el: navbar, originalDisplay: (navbar && navbar.style.display) || '' },
           { el: sidebar, originalDisplay: (sidebar && sidebar.style.display) || '' }
         ]
         elementsToHide.forEach(item => {

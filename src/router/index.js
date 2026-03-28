@@ -64,13 +64,65 @@ export const constantRoutes = [
   {
     path: '',
     component: Layout,
-    redirect: 'index',
+    redirect: 'homePage',
     children: [
       {
         path: 'index',
         component: () => import('@/views/index'),
         name: 'Index',
         meta: { title: '首页', icon: 'dashboard', affix: true }
+      }
+    ]
+  },
+  {
+    path: '/homePage',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/homePage/index'),
+        name: 'HomePage',
+        meta: { title: '首页', icon: 'dashboard' }
+      }
+    ]
+  },
+  {
+    path: '/monitorPage',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/monitorPage/index'),
+        name: 'MonitorPage',
+        meta: { title: '监控', icon: 'monitor' }
+      }
+    ]
+  },
+  {
+    path: '/historyPage',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/historyPage/index'),
+        name: 'HistoryPage',
+        meta: { title: '历史', icon: 'log' }
+      }
+    ]
+  },
+  {
+    path: '/myPage',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/myPage/index'),
+        name: 'MyPage',
+        meta: { title: '我的', icon: 'user' }
       }
     ]
   },
