@@ -79,7 +79,13 @@
           <span class="menu-text">使用帮助</span>
           <svg-icon icon-class="right" class="menu-arrow" />
         </div>
-        <!-- 关于我们 页面已移除 -->
+        <div class="menu-item" @click="$router.push('/about')">
+          <div class="menu-icon">
+            <svg-icon icon-class="info" />
+          </div>
+          <span class="menu-text">关于我们</span>
+          <svg-icon icon-class="right" class="menu-arrow" />
+        </div>
       </div>
     </div>
 

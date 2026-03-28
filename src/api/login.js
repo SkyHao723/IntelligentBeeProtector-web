@@ -21,7 +21,7 @@ export function getInfo() {
     user: {
       userId: 1,
       userName: 'admin',
-      nickName: '超级管理员',
+      nickName: '超级养蜂人',
       avatar: '',
       email: 'admin@ruoyi.com',
       phonenumber: '15888888888',

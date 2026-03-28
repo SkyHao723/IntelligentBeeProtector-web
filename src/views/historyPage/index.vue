@@ -5,23 +5,79 @@
       <p class="page-subtitle">查看设备历史数据和操作记录</p>
     </div>
 
-    <div class="filter-bar">
-      <el-select v-model="filterType" placeholder="选择类型" size="small" style="width: 120px;">
-        <el-option label="全部" value="" />
-        <el-option label="告警记录" value="alert" />
-        <el-option label="操作日志" value="operation" />
-        <el-option label="设备日志" value="device" />
-      </el-select>
-      <el-date-picker
-        v-model="dateRange"
-        type="daterange"
-        range-separator="至"
-        start-placeholder="开始日期"
-        end-placeholder="结束日期"
-        size="small"
-        style="width: 220px;"
-      />
-      <el-button type="primary" size="small" icon="el-icon-search">搜索</el-button>
+    <div class="action-bar">
+      <div class="action-buttons">
+        <el-button type="primary" size="small" icon="el-icon-document" @click="generateHealthReport">
+          生成健康报告
+        </el-button>
+        <el-button type="info" size="small" icon="el-icon-download">
+          导出数据
+        </el-button>
+      </div>
+      <div class="filter-bar">
+        <el-select v-model="filterType" placeholder="选择类型" size="small" style="width: 120px;">
+          <el-option label="全部" value="" />
+          <el-option label="告警记录" value="alert" />
+          <el-option label="操作日志" value="operation" />
+          <el-option label="设备日志" value="device" />
+        </el-select>
+        <el-date-picker
+          v-model="dateRange"
+          type="daterange"
+          range-separator="至"
+          start-placeholder="开始日期"
+          end-placeholder="结束日期"
+          size="small"
+          style="width: 220px;"
+        />
+        <el-button type="primary" size="small" icon="el-icon-search">搜索</el-button>
+      </div>
+    </div>
+
+    <div class="charts-section">
+      <div class="chart-container">
+        <div class="chart-header">
+          <h3 class="chart-title">温度历史曲线</h3>
+          <div class="chart-actions">
+            <el-select v-model="tempDevice" placeholder="选择设备" size="mini" style="width: 120px;">
+              <el-option label="全部设备" value="all" />
+              <el-option label="设备 #001" value="001" />
+              <el-option label="设备 #002" value="002" />
+              <el-option label="设备 #003" value="003" />
+            </el-select>
+            <el-select v-model="tempPeriod" placeholder="时间范围" size="mini" style="width: 100px;">
+              <el-option label="24小时" value="24h" />
+              <el-option label="7天" value="7d" />
+              <el-option label="30天" value="30d" />
+            </el-select>
+          </div>
+        </div>
+        <div class="chart-content">
+          <div ref="temperatureChart" class="chart" style="height: 300px;"></div>
+        </div>
+      </div>
+
+      <div class="chart-container">
+        <div class="chart-header">
+          <h3 class="chart-title">重量历史曲线</h3>
+          <div class="chart-actions">
+            <el-select v-model="weightDevice" placeholder="选择设备" size="mini" style="width: 120px;">
+              <el-option label="全部设备" value="all" />
+              <el-option label="设备 #001" value="001" />
+              <el-option label="设备 #002" value="002" />
+              <el-option label="设备 #003" value="003" />
+            </el-select>
+            <el-select v-model="weightPeriod" placeholder="时间范围" size="mini" style="width: 100px;">
+              <el-option label="24小时" value="24h" />
+              <el-option label="7天" value="7d" />
+              <el-option label="30天" value="30d" />
+            </el-select>
+          </div>
+        </div>
+        <div class="chart-content">
+          <div ref="weightChart" class="chart" style="height: 300px;"></div>
+        </div>
+      </div>
     </div>
 
     <div class="timeline-container">
@@ -50,6 +106,8 @@
 </template>
 
 <script>
+import * as echarts from 'echarts'
+
 export default {
   name: 'HistoryPage',
   data() {
@@ -57,6 +115,12 @@ export default {
       filterType: '',
       dateRange: null,
       loading: false,
+      tempDevice: 'all',
+      tempPeriod: '24h',
+      weightDevice: 'all',
+      weightPeriod: '24h',
+      temperatureChart: null,
+      weightChart: null,
       historyList: [
         {
           title: '设备 #003 温度告警已处理',
@@ -103,7 +167,223 @@ export default {
       ]
     }
   },
+  mounted() {
+    this.initCharts()
+    window.addEventListener('resize', this.handleResize)
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.handleResize)
+    if (this.temperatureChart) {
+      this.temperatureChart.dispose()
+    }
+    if (this.weightChart) {
+      this.weightChart.dispose()
+    }
+  },
+  watch: {
+    tempDevice() {
+      this.updateTemperatureChart()
+    },
+    tempPeriod() {
+      this.updateTemperatureChart()
+    },
+    weightDevice() {
+      this.updateWeightChart()
+    },
+    weightPeriod() {
+      this.updateWeightChart()
+    }
+  },
   methods: {
+    initCharts() {
+      this.temperatureChart = echarts.init(this.$refs.temperatureChart)
+      this.weightChart = echarts.init(this.$refs.weightChart)
+      this.updateTemperatureChart()
+      this.updateWeightChart()
+    },
+    handleResize() {
+      if (this.temperatureChart) {
+        this.temperatureChart.resize()
+      }
+      if (this.weightChart) {
+        this.weightChart.resize()
+      }
+    },
+    updateTemperatureChart() {
+      const hours = []
+      const temperatures = []
+      
+      // 生成模拟数据
+      for (let i = 0; i < 24; i++) {
+        hours.push(`${i}:00`)
+        // 模拟温度数据，在35-40度之间波动
+        const baseTemp = 37.5
+        const variation = Math.sin(i * 0.5) * 1.5
+        const random = (Math.random() - 0.5) * 0.8
+        temperatures.push(parseFloat((baseTemp + variation + random).toFixed(1)))
+      }
+      
+      const option = {
+        tooltip: {
+          trigger: 'axis',
+          formatter: '{b}<br/>{a}: {c}°C'
+        },
+        grid: {
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          top: '10%',
+          containLabel: true
+        },
+        xAxis: {
+          type: 'category',
+          boundaryGap: false,
+          data: hours,
+          axisLine: {
+            lineStyle: {
+              color: '#dcdfe6'
+            }
+          }
+        },
+        yAxis: {
+          type: 'value',
+          name: '温度(°C)',
+          min: 34,
+          max: 41,
+          axisLine: {
+            lineStyle: {
+              color: '#dcdfe6'
+            }
+          },
+          splitLine: {
+            lineStyle: {
+              color: '#f0f0f0'
+            }
+          }
+        },
+        series: [
+          {
+            name: '温度',
+            type: 'line',
+            smooth: true,
+            symbol: 'circle',
+            symbolSize: 6,
+            itemStyle: {
+              color: '#f56c6c'
+            },
+            lineStyle: {
+              color: '#f56c6c',
+              width: 2
+            },
+            areaStyle: {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                { offset: 0, color: 'rgba(245, 108, 108, 0.3)' },
+                { offset: 1, color: 'rgba(245, 108, 108, 0.05)' }
+              ])
+            },
+            data: temperatures
+          }
+        ]
+      }
+      
+      this.temperatureChart.setOption(option)
+    },
+    updateWeightChart() {
+      const hours = []
+      const weights = []
+      
+      // 生成模拟数据
+      for (let i = 0; i < 24; i++) {
+        hours.push(`${i}:00`)
+        // 模拟重量数据，在45-55kg之间波动
+        const baseWeight = 50
+        const variation = Math.sin(i * 0.3) * 3
+        const random = (Math.random() - 0.5) * 1.2
+        weights.push(parseFloat((baseWeight + variation + random).toFixed(1)))
+      }
+      
+      const option = {
+        tooltip: {
+          trigger: 'axis',
+          formatter: '{b}<br/>{a}: {c}kg'
+        },
+        grid: {
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          top: '10%',
+          containLabel: true
+        },
+        xAxis: {
+          type: 'category',
+          boundaryGap: false,
+          data: hours,
+          axisLine: {
+            lineStyle: {
+              color: '#dcdfe6'
+            }
+          }
+        },
+        yAxis: {
+          type: 'value',
+          name: '重量(kg)',
+          min: 42,
+          max: 58,
+          axisLine: {
+            lineStyle: {
+              color: '#dcdfe6'
+            }
+          },
+          splitLine: {
+            lineStyle: {
+              color: '#f0f0f0'
+            }
+          }
+        },
+        series: [
+          {
+            name: '重量',
+            type: 'line',
+            smooth: true,
+            symbol: 'circle',
+            symbolSize: 6,
+            itemStyle: {
+              color: '#409EFF'
+            },
+            lineStyle: {
+              color: '#409EFF',
+              width: 2
+            },
+            areaStyle: {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                { offset: 0, color: 'rgba(64, 158, 255, 0.3)' },
+                { offset: 1, color: 'rgba(64, 158, 255, 0.05)' }
+              ])
+            },
+            data: weights
+          }
+        ]
+      }
+      
+      this.weightChart.setOption(option)
+    },
+    generateHealthReport() {
+      this.$confirm('确定要生成健康报告吗？报告将包含最近24小时的数据分析。', '生成健康报告', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'info'
+      }).then(() => {
+        this.loading = true
+        // 模拟生成报告的过程
+        setTimeout(() => {
+          this.loading = false
+          this.$message({
+            type: 'success',
+            message: '健康报告生成成功！报告已保存到"我的文档"文件夹。'
+          })
+        }, 1500)
+      }).catch(() => {})
+    },
     getTagType(type) {
       const map = {
         alert: 'danger',
@@ -149,11 +429,70 @@ export default {
   }
 }
 
-.filter-bar {
+.action-bar {
   display: flex;
-  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
   flex-wrap: wrap;
+  gap: 16px;
+
+  .action-buttons {
+    display: flex;
+    gap: 12px;
+  }
+
+  .filter-bar {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+}
+
+.charts-section {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.chart-container {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+
+  .chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 16px 0 16px;
+    margin-bottom: 12px;
+
+    .chart-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #303133;
+      margin: 0;
+    }
+
+    .chart-actions {
+      display: flex;
+      gap: 8px;
+    }
+  }
+
+  .chart-content {
+    padding: 0 16px 16px 16px;
+
+    .chart {
+      width: 100%;
+    }
+  }
 }
 
 .timeline-container {

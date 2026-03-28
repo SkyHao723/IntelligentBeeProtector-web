@@ -6,7 +6,7 @@ export function listUser(query) {
       {
         userId: 1,
         userName: 'admin',
-        nickName: '超级管理员',
+        nickName: '超级养蜂人',
         email: 'admin@ruoyi.com',
         phonenumber: '15888888888',
         sex: '0',
@@ -35,7 +35,7 @@ export function getUser(userId) {
     data: {
       userId: userId,
       userName: 'admin',
-      nickName: '超级管理员',
+      nickName: '超级养蜂人',
       email: 'admin@ruoyi.com',
       phonenumber: '15888888888',
       sex: '0',
@@ -93,12 +93,12 @@ export function getUserProfile() {
       user: {
         userId: 1,
         userName: 'admin',
-        nickName: '超级管理员',
+        nickName: '超级养蜂人',
         email: 'admin@ruoyi.com',
         phonenumber: '15888888888',
         sex: '0'
       },
-      roleGroup: '超级管理员',
+      roleGroup: '超级养蜂人',
       postGroup: '董事长'
     }
   })
@@ -134,7 +134,7 @@ export function getAuthRole(userId) {
     code: 200,
     data: {
       roles: [
-        { roleId: 1, roleName: '超级管理员', roleKey: 'admin', roleSort: 1, status: '0', flag: true }
+        { roleId: 1, roleName: '超级养蜂人', roleKey: 'admin', roleSort: 1, status: '0', flag: true }
       ],
       user: {
         userId: userId,

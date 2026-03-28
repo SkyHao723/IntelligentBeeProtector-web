@@ -142,6 +142,19 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/about',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/about/index'),
+        name: 'About',
+        meta: { title: '关于我们', icon: 'info' }
+      }
+    ]
+  },
+  {
     path: '/lock',
     component: () => import('@/views/lock'),
     hidden: true,
