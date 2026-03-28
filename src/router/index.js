@@ -127,6 +127,45 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/about',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/about/index'),
+        name: 'About',
+        meta: { title: '关于我们', icon: 'info' }
+      }
+    ]
+  },
+  {
+    path: '/help',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/help/index'),
+        name: 'Help',
+        meta: { title: '使用帮助', icon: 'documentation' }
+      }
+    ]
+  },
+  {
+    path: '/notifications',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/notifications/index'),
+        name: 'Notifications',
+        meta: { title: '消息通知', icon: 'message' }
+      }
+    ]
+  },
+  {
     path: '/lock',
     component: () => import('@/views/lock'),
     hidden: true,

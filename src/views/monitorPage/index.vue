@@ -2,7 +2,7 @@
   <div class="monitor-page">
     <div class="page-header">
       <h2 class="page-title">监控中心</h2>
-      <p class="page-subtitle">实时监控设备运行状态</p>
+      <p class="page-subtitle">实时监控蜂箱运行状态</p>
     </div>
 
     <div class="status-bar">
@@ -23,7 +23,7 @@
     <div class="monitor-grid">
       <div class="monitor-card" v-for="i in 8" :key="i">
         <div class="card-header">
-          <span class="device-name">设备 #{{ String(i).padStart(3, '0') }}</span>
+          <span class="device-name">蜂箱 #{{ String(i).padStart(3, '0') }}</span>
           <span class="device-status online">在线</span>
         </div>
         <div class="card-body">
@@ -59,7 +59,7 @@
             <svg-icon icon-class="warning" />
           </div>
           <div class="alert-content">
-            <div class="alert-title">设备 #003 温度异常</div>
+            <div class="alert-title">蜂箱 #003 温度异常</div>
             <div class="alert-desc">当前温度 42.5°C，超过阈值 40°C</div>
             <div class="alert-time">2026-03-28 10:30:00</div>
           </div>
@@ -70,7 +70,7 @@
             <svg-icon icon-class="bug" />
           </div>
           <div class="alert-content">
-            <div class="alert-title">设备 #007 检测到病虫害</div>
+            <div class="alert-title">蜂箱 #007 检测到病虫害</div>
             <div class="alert-desc">疑似蜂螨感染，建议立即处理</div>
             <div class="alert-time">2026-03-28 09:15:00</div>
           </div>
