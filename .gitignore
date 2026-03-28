@@ -19,5 +19,9 @@ selenium-debug.log
 *.sln
 *.local
 
+/dist/
+/build/
+/android/
+
 package-lock.json
 yarn.lock
