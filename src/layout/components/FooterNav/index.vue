@@ -24,7 +24,7 @@ export default {
   data() {
     return {
       navItems: [
-        { title: '首页', icon: 'dashboard', path: '/homePage' },
+        { title: '首页', icon: 'dashboard', path: '/index' },
         { title: '监控', icon: 'monitor', path: '/monitorPage' },
         { title: '历史', icon: 'log', path: '/historyPage' },
         { title: '我的', icon: 'user', path: '/myPage' }
