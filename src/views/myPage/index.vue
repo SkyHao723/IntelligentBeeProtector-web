@@ -54,7 +54,7 @@
       </div>
 
       <div class="menu-group">
-        <div class="menu-item">
+        <div class="menu-item" @click="$router.push('/notifications')">
           <div class="menu-icon">
             <svg-icon icon-class="message" />
           </div>
@@ -72,14 +72,14 @@
       </div>
 
       <div class="menu-group">
-        <div class="menu-item">
+        <div class="menu-item" @click="$router.push('/help')">
           <div class="menu-icon">
             <svg-icon icon-class="documentation" />
           </div>
-          <span class="menu-text">帮助文档</span>
+          <span class="menu-text">使用帮助</span>
           <svg-icon icon-class="right" class="menu-arrow" />
         </div>
-        <div class="menu-item">
+        <div class="menu-item" @click="$router.push('/about')">
           <div class="menu-icon">
             <svg-icon icon-class="info" />
           </div>
