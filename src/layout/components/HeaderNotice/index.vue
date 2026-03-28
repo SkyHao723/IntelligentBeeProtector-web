@@ -1,40 +1,5 @@
 <template>
-  <div>
-    <el-popover ref="noticePopover" placement="bottom-end" width="320" trigger="manual" :value="noticeVisible" popper-class="notice-popover">
-      <div class="notice-header">
-        <span class="notice-title">通知公告</span>
-        <span class="notice-mark-all" @click="markAllRead">全部已读</span>
-      </div>
-      <div v-if="noticeLoading" class="notice-loading"><i class="el-icon-loading"></i> 加载中...</div>
-      <div v-else-if="noticeList.length === 0" class="notice-empty"><i class="el-icon-inbox"></i><br>暂无公告</div>
-      <div v-else>
-        <div v-for="item in noticeList" :key="item.noticeId" class="notice-item" :class="{ 'is-read': item.isRead }" @click="previewNotice(item)">
-          <el-tag size="mini" :type="item.noticeType === '1' ? 'warning' : 'success'" class="notice-tag">
-            {{ item.noticeType === '1' ? '通知' : '公告' }}
-          </el-tag>
-          <span class="notice-item-title">{{ item.noticeTitle }}</span>
-          <span class="notice-item-date">{{ item.createTime }}</span>
-        </div>
-      </div>
-    </el-popover>
 
-    <div v-popover:noticePopover class="right-menu-item hover-effect notice-trigger" @mouseenter="onNoticeEnter" @mouseleave="onNoticeLeave">
-      <svg-icon icon-class="bell" />
-      <span v-if="unreadCount > 0" class="notice-badge">{{ unreadCount }}</span>
-    </div>
-
-    <el-dialog :title="previewTitle" :visible.sync="previewVisible" width="680px" append-to-body custom-class="notice-preview-dialog">
-      <div class="notice-preview-meta">
-        <el-tag size="small" :type="previewNoticeType === '1' ? 'warning' : 'success'">
-          {{ previewNoticeType === '1' ? '通知' : '公告' }}
-        </el-tag>
-        <span class="notice-preview-info"><i class="el-icon-user"></i> {{ previewCreateBy }}</span>
-        <span class="notice-preview-info"><i class="el-icon-time"></i> {{ previewCreateTime }}</span>
-      </div>
-      <div class="notice-preview-divider"></div>
-      <div class="notice-preview-content" v-html="previewContent"></div>
-    </el-dialog>
-  </div>
 </template>
 
 <script>
