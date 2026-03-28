@@ -75,8 +75,8 @@ $bg-glass: rgba(255, 255, 255, 0.85);
   max-width: 500px; // 限制大屏下的宽度
   height: 64px;
   background: $bg-glass;
-  backdrop-filter: blur(12px); // 毛玻璃核心
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(4px); // 毛玻璃核心
+  border: 1px solid rgba(255, 255, 255, 0.107);
   border-radius: 40px; // 圆润的边角
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
   overflow: hidden;
