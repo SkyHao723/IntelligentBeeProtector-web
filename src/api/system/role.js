@@ -5,7 +5,7 @@ export function listRole(query) {
     rows: [
       {
         roleId: 1,
-        roleName: '超级管理员',
+        roleName: '超级养蜂人',
         roleKey: 'admin',
         roleSort: 1,
         dataScope: '1',
@@ -32,7 +32,7 @@ export function getRole(roleId) {
     code: 200,
     data: {
       roleId: roleId,
-      roleName: '超级管理员',
+      roleName: '超级养蜂人',
       roleKey: 'admin',
       roleSort: 1,
       dataScope: '1',
@@ -90,7 +90,7 @@ export function allocatedUserList(query) {
       {
         userId: 1,
         userName: 'admin',
-        nickName: '超级管理员'
+        nickName: '超级养蜂人'
       }
     ],
     total: 1

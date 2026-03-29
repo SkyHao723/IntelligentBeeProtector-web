@@ -2,7 +2,7 @@
   <div class="home-page">
     <div class="page-header">
       <h2 class="page-title">首页</h2>
-      <p class="page-subtitle">欢迎使用智能蜜蜂保护系统</p>
+      <p class="page-subtitle">智能蜂箱管理系统</p>
     </div>
 
     <div class="stats-grid">
@@ -12,7 +12,7 @@
         </div>
         <div class="stat-info">
           <div class="stat-value">128</div>
-          <div class="stat-label">设备总数</div>
+          <div class="stat-label">蜂箱总数</div>
         </div>
       </div>
 
@@ -22,7 +22,7 @@
         </div>
         <div class="stat-info">
           <div class="stat-value">96</div>
-          <div class="stat-label">在线设备</div>
+          <div class="stat-label">在线蜂箱</div>
         </div>
       </div>
 
@@ -64,8 +64,8 @@
           <svg-icon icon-class="settings" class="action-icon" />
           <span>系统设置</span>
         </div>
-        <div class="action-item">
-          <svg-icon icon-class="message" class="action-icon" />
+        <div class="action-item" @click="$router.push('/notifications')">
+          <svg-icon icon-class="xiaoxi" class="action-icon" />
           <span>消息通知</span>
         </div>
       </div>
@@ -80,7 +80,7 @@
         <div class="activity-item">
           <div class="activity-dot"></div>
           <div class="activity-content">
-            <div class="activity-title">设备 #001 检测到异常</div>
+            <div class="activity-title">蜂箱 #001 检测到异常</div>
             <div class="activity-time">5分钟前</div>
           </div>
         </div>
@@ -94,7 +94,7 @@
         <div class="activity-item">
           <div class="activity-dot"></div>
           <div class="activity-content">
-            <div class="activity-title">新增设备 #128 上线</div>
+            <div class="activity-title">新增蜂箱 #128 上线</div>
             <div class="activity-time">3小时前</div>
           </div>
         </div>
