@@ -20,7 +20,7 @@
       </div>
       <div class="stat-item">
         <span class="stat-value">56</span>
-        <span class="stat-label">处理告警</span>
+        <span class="stat-label">处理预警</span>
       </div>
       <div class="stat-item">
         <span class="stat-value">365</span>
@@ -66,7 +66,7 @@
           <div class="menu-icon">
             <svg-icon icon-class="bell" />
           </div>
-          <span class="menu-text">告警设置</span>
+          <span class="menu-text">预警设置</span>
           <svg-icon icon-class="right" class="menu-arrow" />
         </div>
       </div>

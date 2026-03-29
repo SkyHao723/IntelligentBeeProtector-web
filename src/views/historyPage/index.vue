@@ -17,7 +17,7 @@
       <div class="filter-bar">
         <el-select v-model="filterType" placeholder="选择类型" size="small" style="width: 120px;">
           <el-option label="全部" value="" />
-          <el-option label="告警记录" value="alert" />
+          <el-option label="预警记录" value="alert" />
           <el-option label="操作日志" value="operation" />
           <el-option label="设备日志" value="device" />
         </el-select>
@@ -123,7 +123,7 @@ export default {
       weightChart: null,
       historyList: [
         {
-          title: '设备 #003 温度告警已处理',
+          title: '设备 #003 温度预警已处理',
           desc: '温度已恢复正常范围，当前温度 37.2°C',
           time: '2026-03-28 10:45:00',
           type: 'alert',
@@ -131,7 +131,7 @@ export default {
         },
         {
           title: '系统参数已更新',
-          desc: '管理员修改了温度告警阈值，由 40°C 调整为 42°C',
+          desc: '管理员修改了温度预警阈值，由 40°C 调整为 42°C',
           time: '2026-03-28 10:30:00',
           type: 'operation',
           device: '系统设置'
@@ -394,7 +394,7 @@ export default {
     },
     getTagName(type) {
       const map = {
-        alert: '告警',
+        alert: '预警',
         operation: '操作',
         device: '设备'
       }

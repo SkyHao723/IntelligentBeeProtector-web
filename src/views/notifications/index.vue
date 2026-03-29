@@ -26,7 +26,7 @@ export default {
     return {
       messages: [
         { id: 1, title: '设备离线', time: '2026-03-28 10:12', body: '设备 ID: A1001 已离线，请检查网络。', read: false },
-        { id: 2, title: '告警触发', time: '2026-03-27 18:05', body: '温度阈值超限，已触发告警。', read: true }
+        { id: 2, title: '预警触发', time: '2026-03-27 18:05', body: '温度阈值超限，已触发预警。', read: true }
       ]
     }
   },

@@ -86,7 +86,7 @@
           </div>
           
           <div class="detail-section" v-if="currentDevice.alerts && currentDevice.alerts.length > 0">
-            <h4>告警信息</h4>
+            <h4>预警信息</h4>
             <div class="alert-list">
               <div class="alert-item" v-for="(alert, index) in currentDevice.alerts" :key="index">
                 <div class="alert-icon">
@@ -120,7 +120,7 @@
       </div>
       <div class="status-item warning">
         <span class="status-dot"></span>
-        <span>告警: 12</span>
+        <span>预警: 12</span>
       </div>
       <div class="status-item abnormal">
         <span class="status-dot"></span>
@@ -166,7 +166,7 @@
 
     <div class="content-section">
       <div class="section-header">
-        <h3 class="section-title">告警信息</h3>
+        <h3 class="section-title">预警信息</h3>
         <span class="view-more">查看全部</span>
       </div>
       <div class="alert-list">
@@ -224,11 +224,11 @@ export default {
   },
   methods: {
     getDeviceStatus(deviceId) {
-      // 模拟设备状态：1-4健康，5-6告警，7-8异常
+      // 模拟设备状态：1-4健康，5-6预警，7-8异常
       if (deviceId <= 4) {
         return '健康'
       } else if (deviceId <= 6) {
-        return '告警'
+        return '预警'
       } else {
         return '异常'
       }
@@ -275,7 +275,7 @@ export default {
       if (deviceId <= 4) {
         statusFactor = 1.2  // 健康设备产量更高
       } else if (deviceId <= 6) {
-        statusFactor = 0.8  // 告警设备产量降低
+        statusFactor = 0.8  // 预警设备产量降低
       } else {
         statusFactor = 0.5  // 异常设备产量大幅降低
       }
@@ -305,7 +305,7 @@ export default {
         onlineTime: `${deviceId * 3 + 15}天`,
         alerts: deviceId <= 6 ? [] : [
           {
-            title: '温度异常告警',
+            title: '温度异常预警',
             time: '2026-03-28 10:30:00'
           }
         ]
