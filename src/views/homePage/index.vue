@@ -114,8 +114,10 @@ export default {
   padding: 20px;
   padding-bottom: 80px;
   background: #f5f7fa;
-  min-height: calc(100vh - 50px);
+  min-height: 100vh;
 }
+
+
 
 .page-header {
   margin-bottom: 24px;
