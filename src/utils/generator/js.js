@@ -140,7 +140,14 @@ function buildRules(conf, ruleList) {
     if (conf.regList && Array.isArray(conf.regList)) {
       conf.regList.forEach(item => {
         if (item.pattern) {
-          rules.push(`{ pattern: ${eval(item.pattern)}, message: '${item.message}', trigger: '${trigger[conf.tag]}' }`)
+          let pattern
+          try {
+            pattern = new RegExp(item.pattern)
+          } catch (e) {
+            console.warn(`invalid regexp pattern for ${conf.vModel}:`, item.pattern)
+            return
+          }
+          rules.push(`{ pattern: ${pattern}, message: '${item.message}', trigger: '${trigger[conf.tag]}' }`)
         }
       })
     }
