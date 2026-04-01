@@ -7,12 +7,16 @@
 
     <div class="action-bar">
       <div class="action-buttons">
-        <el-button type="primary" size="small" icon="el-icon-document" @click="generateHealthReport">
-          生成健康报告
-        </el-button>
-        <el-button type="info" size="small" icon="el-icon-download">
-          导出数据
-        </el-button>
+        <div class="button-group">
+          <el-button type="primary" size="small" icon="el-icon-document" @click="generateHealthReport">
+            生成健康报告
+          </el-button>
+        </div>
+        <div class="button-group">
+          <el-button type="info" size="small" icon="el-icon-download">
+            导出数据
+          </el-button>
+        </div>
       </div>
       <div class="filter-bar">
         <el-select v-model="filterType" placeholder="选择类型" size="small" style="width: 120px;">
@@ -21,16 +25,32 @@
           <el-option label="操作日志" value="operation" />
           <el-option label="设备日志" value="device" />
         </el-select>
+        
+        <!-- 快捷日期选择 -->
+        <el-select v-model="quickDateRange" placeholder="快捷日期" size="small" style="width: 120px;" @change="handleQuickDateChange">
+          <el-option label="最近7天" value="7d" />
+          <el-option label="最近30天" value="30d" />
+          <el-option label="最近90天" value="90d" />
+          <el-option label="最近一年" value="1y" />
+          <el-option label="自定义" value="custom" />
+        </el-select>
+        
+        <!-- 日期范围选择（仅自定义时显示） -->
         <el-date-picker
+          v-if="quickDateRange === 'custom'"
           v-model="dateRange"
           type="daterange"
           range-separator="至"
           start-placeholder="开始日期"
           end-placeholder="结束日期"
           size="small"
-          style="width: 220px;"
+          format="yyyy-MM-dd"
+          :default-time="['00:00:00', '23:59:59']"
+          popper-append-to-body
+          style="width: 100%;"
         />
-        <el-button type="primary" size="small" icon="el-icon-search">搜索</el-button>
+        
+        <el-button type="primary" size="small" icon="el-icon-search" @click="handleSearch">搜索</el-button>
       </div>
     </div>
 
@@ -114,6 +134,7 @@ export default {
     return {
       filterType: '',
       dateRange: null,
+      quickDateRange: '7d', // 默认显示最近7天
       loading: false,
       tempDevice: 'all',
       tempPeriod: '24h',
@@ -399,6 +420,55 @@ export default {
         device: '设备'
       }
       return map[type] || '其他'
+    },
+    // 禁用未来日期的函数
+    disabledDateFn(time) {
+      // 只禁用未来的日期，允许选择过往日期
+      return time.getTime() > Date.now()
+    },
+    // 处理快捷日期选择
+    handleQuickDateChange(value) {
+      const now = new Date()
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+      
+      switch(value) {
+        case '7d':
+          this.dateRange = [new Date(today.getTime() - 6 * 24 * 60 * 60 * 1000), today]
+          break
+        case '30d':
+          this.dateRange = [new Date(today.getTime() - 29 * 24 * 60 * 60 * 1000), today]
+          break
+        case '90d':
+          this.dateRange = [new Date(today.getTime() - 89 * 24 * 60 * 60 * 1000), today]
+          break
+        case '1y':
+          this.dateRange = [new Date(today.getTime() - 364 * 24 * 60 * 60 * 1000), today]
+          break
+        case 'custom':
+          // 自定义模式，清空日期让用户选择
+          this.dateRange = null
+          break
+      }
+    },
+    // 搜索按钮点击事件
+    handleSearch() {
+      if (this.quickDateRange && this.quickDateRange !== 'custom') {
+        this.$message({
+          type: 'success',
+          message: `已搜索 ${this.quickDateRange} 的数据`
+        })
+      } else if (this.dateRange && this.dateRange.length === 2) {
+        const [startDate, endDate] = this.dateRange
+        this.$message({
+          type: 'success',
+          message: `已搜索从 ${startDate} 至 ${endDate} 的数据`
+        })
+      } else if (this.quickDateRange === 'custom') {
+        this.$message({
+          type: 'warning',
+          message: '请选择日期范围'
+        })
+      }
     }
   }
 }
@@ -410,6 +480,12 @@ export default {
   padding-bottom: 80px;
   background: #f5f7fa;
   min-height: calc(100vh - 50px);
+  /* 确保不限制弹层显示 */
+  overflow: visible !important;
+  
+  @media (max-width: 768px) {
+    padding-bottom: 20px;
+  }
 }
 
 .page-header {
@@ -432,20 +508,112 @@ export default {
 .action-bar {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 20px;
   flex-wrap: wrap;
   gap: 16px;
 
   .action-buttons {
     display: flex;
-    gap: 12px;
+    flex-direction: column;
+    gap: 8px;
+    
+    .button-group {
+      display: flex;
+      gap: 8px;
+    }
+    
+    @media (max-width: 768px) {
+      width: 100%;
+      
+      .button-group {
+        width: 100%;
+        
+        .el-button {
+          width: 100%;
+        }
+      }
+    }
   }
 
   .filter-bar {
     display: flex;
     gap: 12px;
     flex-wrap: wrap;
+    flex: 1;
+    min-width: 0;
+    
+    @media (max-width: 768px) {
+      flex-direction: column;
+      width: 100%;
+      
+      .el-select,
+      .el-date-picker,
+      .el-button {
+        width: 100%;
+        flex: 1;
+        min-width: 100px;
+      }
+    }
+  }
+}
+
+/* 日期选择器弹层样式 - 移动端适配 */
+::v-deep .el-picker-panel {
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.15);
+  
+  @media (max-width: 768px) {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    max-height: 70vh !important;
+    border-radius: 16px 16px 0 0 !important;
+    margin: 0 !important;
+    z-index: 2000 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    
+    /* 确保内容可以滚动 */
+    .el-picker-panel__body {
+      overflow-y: auto;
+      max-height: calc(70vh - 50px);
+      
+      @supports (padding: max(0px)) {
+        max-height: calc(70vh - 50px - env(safe-area-inset-bottom));
+      }
+    }
+  }
+}
+
+/* 日期选择器弹出层背景遮罩 */
+::v-deep .el-picker-panel__footer {
+  @media (max-width: 768px) {
+    padding: 12px 16px !important;
+    background: #f5f7fa !important;
+    border-top: 1px solid #ebeef5 !important;
+  }
+}
+
+/* 禁用日期选择器的默认位置计算，使用 fixed */
+::v-deep .popper {
+  @media (max-width: 768px) {
+    &[x-placement^="bottom"],
+    &[x-placement^="top"] {
+      position: fixed !important;
+      bottom: 0 !important;
+      top: auto !important;
+      left: 0 !important;
+      right: 0 !important;
+      width: 100% !important;
+      margin: 0 !important;
+      transform: none !important;
+    }
   }
 }
 

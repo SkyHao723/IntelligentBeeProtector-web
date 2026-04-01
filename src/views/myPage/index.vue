@@ -59,7 +59,7 @@
             <svg-icon icon-class="message" />
           </div>
           <span class="menu-text">消息通知</span>
-          <el-badge :value="3" class="menu-badge" />
+          <el-badge :value="unreadCount" v-if="unreadCount > 0" class="menu-badge" />
           <svg-icon icon-class="right" class="menu-arrow" />
         </div>
         <div class="menu-item">
@@ -104,6 +104,20 @@
 <script>
 export default {
   name: 'MyPage',
+  data() {
+    return {
+      unreadCount: 2
+    }
+  },
+  watch: {
+    '$store.state.unreadCount'(newVal) {
+      this.unreadCount = newVal
+    }
+  },
+  mounted() {
+    // 初始化未读数
+    this.unreadCount = this.$store.state.unreadCount || 2
+  },
   methods: {
     handleLogout() {
       this.$confirm('确定要退出登录吗？', '提示', {

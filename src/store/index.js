@@ -12,6 +12,14 @@ import getters from './getters'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
+  state: {
+    unreadCount: 2 // 未读消息数
+  },
+  mutations: {
+    setUnreadCount(state, count) {
+      state.unreadCount = count
+    }
+  },
   modules: {
     app,
     lock,

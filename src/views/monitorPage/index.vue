@@ -156,6 +156,9 @@
               <span class="value">{{ getProduction(i) }}</span>
             </div>
           </div>
+          <div class="card-actions">
+            <el-button type="primary" size="mini" @click="viewBeeMonitor(i)">蜂箱监控</el-button>
+          </div>
         </div>
         <div class="card-footer">
           <span class="update-time">更新于 {{ getUpdateTime(i) }}</span>
@@ -330,6 +333,9 @@ export default {
         duration: 2000
       })
       this.dialogVisible = false
+    },
+    viewBeeMonitor(deviceId) {
+      this.$router.push(`/beeMonitor/${deviceId}`)
     }
   }
 }
@@ -467,6 +473,7 @@ export default {
     .monitor-info {
       display: flex;
       justify-content: space-around;
+      margin-bottom: 12px;
 
       .info-item {
         text-align: center;
@@ -484,6 +491,10 @@ export default {
           color: #303133;
         }
       }
+    }
+
+    .card-actions {
+      text-align: center;
     }
   }
 

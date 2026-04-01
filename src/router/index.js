@@ -89,6 +89,19 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/beeMonitor/:id',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/beeMonitor/index'),
+        name: 'BeeMonitor',
+        meta: { title: '蜂箱监控', icon: 'monitor' }
+      }
+    ]
+  },
+  {
     path: '/historyPage',
     component: Layout,
     hidden: true,

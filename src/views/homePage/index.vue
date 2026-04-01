@@ -1,7 +1,7 @@
 <template>
   <div class="home-page">
     <div class="page-header">
-      <h2 class="page-title">首页</h2>
+      <h2 class="page-title">智蜂卫士</h2>
       <p class="page-subtitle">智能蜂箱管理系统</p>
     </div>
 
@@ -121,6 +121,7 @@ export default {
 
 .page-header {
   margin-bottom: 24px;
+  text-align: center;
 
   .page-title {
     font-size: 24px;
