@@ -1,10 +1,13 @@
-<template>
+<template><div class="back-button"><el-button @click="$router.go(-1)" icon="el-icon-arrow-left" size="small">����</el-button></div>
   <div class="app-container">
+    <div class="page-back-btn">
+      <el-button type="text" icon="el-icon-arrow-left" @click="goBack" class="back-button">返回</el-button>
+    </div>
     <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
       <el-form-item label="字典名称" prop="dictName">
         <el-input
           v-model="queryParams.dictName"
-          placeholder="请输入字典名称"
+          placeholder="请输入字典名�?
           clearable
           style="width: 240px"
           @keyup.enter.native="handleQuery"
@@ -13,16 +16,16 @@
       <el-form-item label="字典类型" prop="dictType">
         <el-input
           v-model="queryParams.dictType"
-          placeholder="请输入字典类型"
+          placeholder="请输入字典类�?
           clearable
           style="width: 240px"
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="状态" prop="status">
+      <el-form-item label="状�? prop="status">
         <el-select
           v-model="queryParams.status"
-          placeholder="字典状态"
+          placeholder="字典状�?
           clearable
           style="width: 240px"
         >
@@ -41,7 +44,7 @@
           value-format="yyyy-MM-dd"
           type="daterange"
           range-separator="-"
-          start-placeholder="开始日期"
+          start-placeholder="开始日�?
           end-placeholder="结束日期"
         ></el-date-picker>
       </el-form-item>
@@ -116,7 +119,7 @@
           <a class="link-type" style="cursor:pointer" @click="handleViewData(scope.row)">{{ scope.row.dictType }}</a>
         </template>
       </el-table-column>
-      <el-table-column label="状态" align="center" prop="status">
+      <el-table-column label="状�? align="center" prop="status">
         <template slot-scope="scope">
           <dict-tag :options="dict.type.sys_normal_disable" :value="scope.row.status"/>
         </template>
@@ -166,10 +169,10 @@
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="100px">
         <el-form-item label="字典名称" prop="dictName">
-          <el-input v-model="form.dictName" placeholder="请输入字典名称" />
+          <el-input v-model="form.dictName" placeholder="请输入字典名�? />
         </el-form-item>
         <el-form-item prop="dictType">
-          <el-input v-model="form.dictType" placeholder="请输入字典类型" maxlength="100" />
+          <el-input v-model="form.dictType" placeholder="请输入字典类�? maxlength="100" />
           <span slot="label">
             <el-tooltip content="数据存储中的Key值，如：sys_user_sex" placement="top">
               <i class="el-icon-question"></i>
@@ -177,7 +180,7 @@
             字典类型
           </span>
         </el-form-item>
-        <el-form-item label="状态" prop="status">
+        <el-form-item label="状�? prop="status">
           <el-radio-group v-model="form.status">
             <el-radio
               v-for="dict in dict.type.sys_normal_disable"
@@ -187,12 +190,12 @@
           </el-radio-group>
         </el-form-item>
         <el-form-item label="备注" prop="remark">
-          <el-input v-model="form.remark" type="textarea" placeholder="请输入内容"></el-input>
+          <el-input v-model="form.remark" type="textarea" placeholder="请输入内�?></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="submitForm">确 定</el-button>
-        <el-button @click="cancel">取 消</el-button>
+        <el-button type="primary" @click="submitForm">�?�?/el-button>
+        <el-button @click="cancel">�?�?/el-button>
       </div>
     </el-dialog>
 
@@ -210,25 +213,25 @@ export default {
   dicts: ['sys_normal_disable'],
   data() {
     return {
-      // 遮罩层
+      // 遮罩�?
       loading: true,
       // 选中数组
       ids: [],
-      // 非单个禁用
+      // 非单个禁�?
       single: true,
-      // 非多个禁用
+      // 非多个禁�?
       multiple: true,
       // 显示搜索条件
       showSearch: true,
-      // 总条数
+      // 总条�?
       total: 0,
       // 字典表格数据
       typeList: [],
-      // 弹出层标题
+      // 弹出层标�?
       title: "",
-      // 是否显示弹出层
+      // 是否显示弹出�?
       open: false,
-      // 字典数据抽屉状态
+      // 字典数据抽屉状�?
       drawerVisible: false,
       // 字典数据信息
       drawerRow: {},
@@ -259,6 +262,9 @@ export default {
     this.getList()
   },
   methods: {
+    goBack() {
+      this.$router.go(-1)
+    },
     /** 查询字典类型列表 */
     getList() {
       this.loading = true
@@ -350,7 +356,7 @@ export default {
     /** 删除按钮操作 */
     handleDelete(row) {
       const dictIds = row.dictId || this.ids
-      this.$modal.confirm('是否确认删除字典编号为"' + dictIds + '"的数据项？').then(function() {
+      this.$modal.confirm('是否确认删除字典编号�?' + dictIds + '"的数据项�?).then(function() {
         return delType(dictIds)
       }).then(() => {
         this.getList()

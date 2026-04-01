@@ -1,4 +1,4 @@
-<template>
+<template><div class="back-button"><el-button @click="$router.go(-1)" icon="el-icon-arrow-left" size="small">����</el-button></div>
   <el-dialog title="操作日志详细" :visible.sync="visible" width="780px" append-to-body @close="$emit('update:visible', false)">
     <div class="detail-wrap">
       <!-- 基本信息 -->
@@ -18,7 +18,7 @@
           </el-col>
           <el-col :span="12">
             <div class="detail-item">
-              <span class="detail-label">执行状态</span>
+              <span class="detail-label">执行状�?/span>
               <el-tag v-if="form.status === 0" type="success" size="small"><i class="el-icon-check"></i> 正常</el-tag>
               <el-tag v-else type="danger" size="small"><i class="el-icon-close"></i> 异常</el-tag>
             </div>
@@ -34,7 +34,7 @@
             <div class="detail-item"><span class="detail-label">操作人员</span><span class="detail-value">{{ form.operName }}</span></div>
           </el-col>
           <el-col :span="12" v-if="form.deptName">
-            <div class="detail-item"><span class="detail-label">所属部门</span><span class="detail-value">{{ form.deptName }}</span></div>
+            <div class="detail-item"><span class="detail-label">所属部�?/span><span class="detail-value">{{ form.deptName }}</span></div>
           </el-col>
         </el-row>
         <el-row class="detail-row">
@@ -68,7 +68,7 @@
         </el-row>
         <el-row class="detail-row">
           <el-col :span="12">
-            <div class="detail-item"><span class="detail-label">消耗时间</span><span class="detail-value">{{ form.costTime }} 毫秒</span></div>
+            <div class="detail-item"><span class="detail-label">消耗时�?/span><span class="detail-value">{{ form.costTime }} 毫秒</span></div>
           </el-col>
         </el-row>
       </div>
@@ -125,13 +125,13 @@ export default {
   },
   methods: {
     formatJson(str) {
-      if (!str) return '（无数据）'
+      if (!str) return '（无数据�?
       try { return JSON.stringify(JSON.parse(str), null, 2) } catch { return str }
     },
     copyText(str) {
       const text = this.formatJson(str)
       if (navigator.clipboard) {
-        navigator.clipboard.writeText(text).then(() => this.$message({ message: '已复制', type: 'success', duration: 1500 }))
+        navigator.clipboard.writeText(text).then(() => this.$message({ message: '已复�?, type: 'success', duration: 1500 }))
       } else {
         const ta = document.createElement('textarea')
         ta.value = text
@@ -139,9 +139,10 @@ export default {
         ta.select()
         document.execCommand('copy')
         document.body.removeChild(ta)
-        this.$message({ message: '已复制', type: 'success', duration: 1500 })
+        this.$message({ message: '已复�?, type: 'success', duration: 1500 })
       }
     }
   }
 }
 </script>
+

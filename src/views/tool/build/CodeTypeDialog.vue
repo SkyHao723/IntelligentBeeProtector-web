@@ -1,4 +1,4 @@
-<template>
+<template><div class="back-button"><el-button @click="$router.go(-1)" icon="el-icon-arrow-left" size="small">����</el-button></div>
   <div>
     <el-dialog
       v-bind="$attrs"
@@ -30,7 +30,7 @@
                 </el-radio-button>
               </el-radio-group>
             </el-form-item>
-            <el-form-item v-if="showFileName" label="文件名" prop="fileName">
+            <el-form-item v-if="showFileName" label="文件�? prop="fileName">
               <el-input v-model="formData.fileName" placeholder="请输入文件名" clearable />
             </el-form-item>
           </el-col>
@@ -104,3 +104,4 @@ export default {
   }
 }
 </script>
+

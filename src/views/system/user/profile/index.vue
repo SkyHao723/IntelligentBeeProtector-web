@@ -1,4 +1,4 @@
-<template>
+<template><div class="back-button"><el-button @click="$router.go(-1)" icon="el-icon-arrow-left" size="small">����</el-button></div>
   <div class="app-container">
     <el-row :gutter="20">
       <el-col :span="6" :xs="24">
@@ -24,11 +24,11 @@
                 <div class="pull-right">{{ user.email }}</div>
               </li>
               <li class="list-group-item">
-                <svg-icon icon-class="tree" />所属部门
+                <svg-icon icon-class="tree" />所属部�?
                 <div class="pull-right" v-if="user.dept">{{ user.dept.deptName }} / {{ postGroup }}</div>
               </li>
               <li class="list-group-item">
-                <svg-icon icon-class="peoples" />所属角色
+                <svg-icon icon-class="peoples" />所属角�?
                 <div class="pull-right">{{ roleGroup }}</div>
               </li>
               <li class="list-group-item">
@@ -93,3 +93,4 @@ export default {
   }
 }
 </script>
+

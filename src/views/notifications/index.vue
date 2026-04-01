@@ -1,6 +1,9 @@
-<template>
+﻿<template>
   <div class="notifications-page">
-    <h2 class="title">消息通知</h2>
+    <div class="page-back-btn">
+      <el-button type="text" icon="el-icon-arrow-left" @click="goBack" class="back-button">杩斿洖</el-button>
+    </div>
+    <h2 class="title">娑堟伅閫氱煡</h2>
     <div class="list-card">
       <div v-if="messages.length > 0">
         <div class="notification-item" v-for="msg in messages" :key="msg.id" :class="{ 'is-read': msg.read }">
@@ -12,14 +15,14 @@
             <div class="msg-body">{{ msg.body }}</div>
           </div>
           <div class="item-footer" v-if="!msg.read">
-            <el-button size="small" type="primary" @click="markRead(msg)">标为已读</el-button>
+            <el-button size="small" type="primary" @click="markRead(msg)">鏍囦负宸茶</el-button>
           </div>
           <div class="item-footer" v-else>
-            <span class="read-label">已读</span>
+            <span class="read-label">宸茶</span>
           </div>
         </div>
       </div>
-      <div v-else class="empty">暂无消息</div>
+      <div v-else class="empty">鏆傛棤娑堟伅</div>
     </div>
   </div>
 </template>
@@ -30,19 +33,22 @@ export default {
   data() {
     return {
       messages: [
-        { id: 1, title: '设备离线', time: '2026-03-28 10:12', body: '设备 ID: A1001 已离线，请检查网络。', read: false },
-        { id: 2, title: '预警触发', time: '2026-03-27 18:05', body: '温度阈值超限，已触发预警。', read: false }
+        { id: 1, title: '璁惧绂荤嚎', time: '2026-03-28 10:12', body: '璁惧 ID: A1001 宸茬绾匡紝璇锋鏌ョ綉缁滐拷?, read: false },
+        { id: 2, title: '棰勮瑙﹀彂', time: '2026-03-27 18:05', body: '娓╁害闃堝€艰秴闄愶紝宸茶Е鍙戦璀︼拷?, read: false }
       ]
     }
   },
   methods: {
-    // 从localStorage加载消息状态
+    goBack() {
+      this.$router.go(-1)
+    },
+    // 浠巐ocalStorage鍔犺浇娑堟伅鐘讹拷?
     loadMessagesState() {
       const savedState = localStorage.getItem('notificationMessages')
       if (savedState) {
         try {
           const savedMessages = JSON.parse(savedState)
-          // 合并保存的状态到当前消息中
+          // 鍚堝苟淇濆瓨鐨勭姸鎬佸埌褰撳墠娑堟伅锟?
           this.messages = this.messages.map(msg => {
             const savedMsg = savedMessages.find(s => s.id === msg.id)
             return savedMsg || msg
@@ -52,24 +58,24 @@ export default {
         }
       }
     },
-    // 保存消息状态到localStorage
+    // 淇濆瓨娑堟伅鐘舵€佸埌localStorage
     saveMessagesState() {
       localStorage.setItem('notificationMessages', JSON.stringify(this.messages))
     },
     markRead(msg) {
       msg.read = true
-      // 保存状态到localStorage
+      // 淇濆瓨鐘舵€佸埌localStorage
       this.saveMessagesState()
-      this.$message({ message: '已标记为已读', type: 'success' })
-      // 更新全局未读数计数
+      this.$message({ message: '宸叉爣璁颁负宸茶', type: 'success' })
+      // 鏇存柊鍏ㄥ眬鏈鏁拌锟?
       const unreadCount = this.messages.filter(m => !m.read).length
       this.$store.commit('setUnreadCount', unreadCount)
     }
   },
   mounted() {
-    // 先加载保存的状态
+    // 鍏堝姞杞戒繚瀛樼殑鐘讹拷?
     this.loadMessagesState()
-    // 初始化未读数
+    // 鍒濆鍖栨湭璇绘暟
     const unreadCount = this.messages.filter(m => !m.read).length
     this.$store.commit('setUnreadCount', unreadCount)
   }
@@ -77,6 +83,20 @@ export default {
 </script>
 
 <style scoped>
+.page-back-btn {
+  padding: 0 0 12px 0;
+  margin-bottom: 8px;
+}
+
+.page-back-btn .back-button {
+  color: #409EFF;
+  font-size: 14px;
+}
+
+.page-back-btn .back-button:hover {
+  color: #66b1ff;
+}
+
 .notifications-page {
   padding: 20px;
   background: #f5f7fa;
@@ -167,4 +187,6 @@ export default {
   padding: 40px 20px;
   font-size: 14px;
 }
-</style>
+.back-button { position: absolute; top: 10px; left: 10px; z-index: 1000; }</style>
+
+

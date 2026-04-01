@@ -97,7 +97,7 @@ export const constantRoutes = [
         path: '',
         component: () => import('@/views/beeMonitor/index'),
         name: 'BeeMonitor',
-        meta: { title: '蜂箱监控', icon: 'monitor' }
+        meta: { title: '实时观测', icon: 'monitor' }
       }
     ]
   },

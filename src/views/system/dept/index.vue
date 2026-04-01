@@ -1,16 +1,19 @@
-<template>
+<template><div class="back-button"><el-button @click="$router.go(-1)" icon="el-icon-arrow-left" size="small">����</el-button></div>
   <div class="app-container">
+    <div class="page-back-btn">
+      <el-button type="text" icon="el-icon-arrow-left" @click="goBack" class="back-button">返回</el-button>
+    </div>
     <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch">
       <el-form-item label="部门名称" prop="deptName">
         <el-input
           v-model="queryParams.deptName"
-          placeholder="请输入部门名称"
+          placeholder="请输入部门名�?
           clearable
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="状态" prop="status">
-        <el-select v-model="queryParams.status" placeholder="部门状态" clearable>
+      <el-form-item label="状�? prop="status">
+        <el-select v-model="queryParams.status" placeholder="部门状�? clearable>
           <el-option
             v-for="dict in dict.type.sys_normal_disable"
             :key="dict.value"
@@ -72,7 +75,7 @@
           <el-input-number v-model="scope.row.orderNum" controls-position="right" :min="0" size="mini" style="width: 88px" />
         </template>
       </el-table-column>
-      <el-table-column prop="status" label="状态" width="100">
+      <el-table-column prop="status" label="状�? width="100">
         <template slot-scope="scope">
           <dict-tag :options="dict.type.sys_normal_disable" :value="scope.row.status"/>
         </template>
@@ -123,7 +126,7 @@
         <el-row>
           <el-col :span="12">
             <el-form-item label="部门名称" prop="deptName">
-              <el-input v-model="form.deptName" placeholder="请输入部门名称" />
+              <el-input v-model="form.deptName" placeholder="请输入部门名�? />
             </el-form-item>
           </el-col>
           <el-col :span="12">
@@ -134,24 +137,24 @@
         </el-row>
         <el-row>
           <el-col :span="12">
-            <el-form-item label="负责人" prop="leader">
+            <el-form-item label="负责�? prop="leader">
               <el-input v-model="form.leader" placeholder="请输入负责人" maxlength="20" />
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item label="联系电话" prop="phone">
-              <el-input v-model="form.phone" placeholder="请输入联系电话" maxlength="11" />
+              <el-input v-model="form.phone" placeholder="请输入联系电�? maxlength="11" />
             </el-form-item>
           </el-col>
         </el-row>
         <el-row>
           <el-col :span="12">
             <el-form-item label="邮箱" prop="email">
-              <el-input v-model="form.email" placeholder="请输入邮箱" maxlength="50" />
+              <el-input v-model="form.email" placeholder="请输入邮�? maxlength="50" />
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="部门状态">
+            <el-form-item label="部门状�?>
               <el-radio-group v-model="form.status">
                 <el-radio
                   v-for="dict in dict.type.sys_normal_disable"
@@ -164,8 +167,8 @@
         </el-row>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="submitForm">确 定</el-button>
-        <el-button @click="cancel">取 消</el-button>
+        <el-button type="primary" @click="submitForm">�?�?/el-button>
+        <el-button @click="cancel">�?�?/el-button>
       </div>
     </el-dialog>
   </div>
@@ -182,23 +185,23 @@ export default {
   components: { Treeselect },
   data() {
     return {
-      // 遮罩层
+      // 遮罩�?
       loading: true,
       // 显示搜索条件
       showSearch: true,
-      // 表格树数据
+      // 表格树数�?
       deptList: [],
       // 部门树选项
       deptOptions: [],
-      // 弹出层标题
+      // 弹出层标�?
       title: "",
-      // 是否显示弹出层
+      // 是否显示弹出�?
       open: false,
       // 是否展开，默认全部展开
       isExpandAll: true,
-      // 重新渲染表格状态
+      // 重新渲染表格状�?
       refreshTable: true,
-      // 记录原始排序，用于对比变更
+      // 记录原始排序，用于对比变�?
       originalOrders: {},
       // 查询参数
       queryParams: {
@@ -239,12 +242,15 @@ export default {
     this.getList()
   },
   methods: {
+    goBack() {
+      this.$router.go(-1)
+    },
     /** 查询部门列表 */
     getList() {
       this.loading = true
       listDept(this.queryParams).then(response => {
         this.deptList = this.handleTree(response.data, "deptId")
-        // 记录原始排序值
+        // 记录原始排序�?
         this.recordOriginalOrders(this.deptList)
         this.loading = false
       })
@@ -380,7 +386,7 @@ export default {
     },
     /** 删除按钮操作 */
     handleDelete(row) {
-      this.$modal.confirm('是否确认删除名称为"' + row.deptName + '"的数据项？').then(function() {
+      this.$modal.confirm('是否确认删除名称�?' + row.deptName + '"的数据项�?).then(function() {
         return delDept(row.deptId)
       }).then(() => {
         this.getList()
@@ -390,3 +396,4 @@ export default {
   }
 }
 </script>
+

@@ -1,8 +1,11 @@
-<template>
+﻿<template>
   <div class="home-page">
+    <div class="page-back-btn">
+      <el-button type="text" icon="el-icon-arrow-left" @click="goBack" class="back-button">杩斿洖</el-button>
+    </div>
     <div class="page-header">
-      <h2 class="page-title">智蜂卫士</h2>
-      <p class="page-subtitle">智能蜂箱管理系统</p>
+      <h2 class="page-title">鏅鸿渹鍗＋</h2>
+      <p class="page-subtitle">鏅鸿兘铚傜绠＄悊绯荤粺</p>
     </div>
 
     <div class="stats-grid">
@@ -12,7 +15,7 @@
         </div>
         <div class="stat-info">
           <div class="stat-value">128</div>
-          <div class="stat-label">蜂箱总数</div>
+          <div class="stat-label">铚傜鎬绘暟</div>
         </div>
       </div>
 
@@ -22,7 +25,7 @@
         </div>
         <div class="stat-info">
           <div class="stat-value">96</div>
-          <div class="stat-label">在线蜂箱</div>
+          <div class="stat-label">鍦ㄧ嚎铚傜</div>
         </div>
       </div>
 
@@ -32,7 +35,7 @@
         </div>
         <div class="stat-info">
           <div class="stat-value">32</div>
-          <div class="stat-label">预警事件</div>
+          <div class="stat-label">棰勮浜嬩欢</div>
         </div>
       </div>
 
@@ -42,60 +45,60 @@
         </div>
         <div class="stat-info">
           <div class="stat-value">98.5%</div>
-          <div class="stat-label">系统健康度</div>
+          <div class="stat-label">绯荤粺鍋ュ悍锟?/div>
         </div>
       </div>
     </div>
 
     <div class="content-section">
       <div class="section-header">
-        <h3 class="section-title">快速操作</h3>
+        <h3 class="section-title">蹇€熸搷锟?/h3>
       </div>
       <div class="quick-actions">
         <div class="action-item" @click="$router.push('/monitorPage')">
           <svg-icon icon-class="eye" class="action-icon" />
-          <span>查看监控</span>
+          <span>鏌ョ湅鐩戞帶</span>
         </div>
         <div class="action-item" @click="$router.push('/historyPage')">
           <svg-icon icon-class="log" class="action-icon" />
-          <span>历史记录</span>
+          <span>鍘嗗彶璁板綍</span>
         </div>
         <div class="action-item" @click="$router.push('/myPage')">
           <svg-icon icon-class="settings" class="action-icon" />
-          <span>系统设置</span>
+          <span>绯荤粺璁剧疆</span>
         </div>
         <div class="action-item" @click="$router.push('/notifications')">
           <svg-icon icon-class="xiaoxi" class="action-icon" />
-          <span>消息通知</span>
+          <span>娑堟伅閫氱煡</span>
         </div>
       </div>
     </div>
 
     <div class="content-section">
       <div class="section-header">
-        <h3 class="section-title">最新动态</h3>
-        <span class="view-more">查看更多</span>
+        <h3 class="section-title">鏈€鏂板姩锟?/h3>
+        <span class="view-more">鏌ョ湅鏇村</span>
       </div>
       <div class="activity-list">
         <div class="activity-item">
           <div class="activity-dot"></div>
           <div class="activity-content">
-            <div class="activity-title">蜂箱 #001 检测到异常</div>
-            <div class="activity-time">5分钟前</div>
+            <div class="activity-title">铚傜 #001 妫€娴嬪埌寮傚父</div>
+            <div class="activity-time">5鍒嗛挓锟?/div>
           </div>
         </div>
         <div class="activity-item">
           <div class="activity-dot success"></div>
           <div class="activity-content">
-            <div class="activity-title">系统升级完成</div>
-            <div class="activity-time">1小时前</div>
+            <div class="activity-title">绯荤粺鍗囩骇瀹屾垚</div>
+            <div class="activity-time">1灏忔椂锟?/div>
           </div>
         </div>
         <div class="activity-item">
           <div class="activity-dot"></div>
           <div class="activity-content">
-            <div class="activity-title">新增蜂箱 #128 上线</div>
-            <div class="activity-time">3小时前</div>
+            <div class="activity-title">鏂板铚傜 #128 涓婄嚎</div>
+            <div class="activity-time">3灏忔椂锟?/div>
           </div>
         </div>
       </div>
@@ -105,11 +108,30 @@
 
 <script>
 export default {
-  name: 'HomePage'
+  name: 'HomePage',
+  methods: {
+    goBack() {
+      this.$router.go(-1)
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
+.page-back-btn {
+  padding: 0 0 12px 0;
+  margin-bottom: 8px;
+
+  .back-button {
+    color: #409EFF;
+    font-size: 14px;
+    
+    &:hover {
+      color: #66b1ff;
+    }
+  }
+}
+
 .home-page {
   padding: 20px;
   padding-bottom: 80px;
@@ -284,4 +306,6 @@ export default {
     }
   }
 }
-</style>
+.back-button { position: absolute; top: 10px; left: 10px; z-index: 1000; }</style>
+
+

@@ -1,8 +1,8 @@
-<template>
-  <!-- 导入表 -->
-  <el-dialog title="导入表" :visible.sync="visible" width="800px" top="5vh" append-to-body>
+<template><div class="back-button"><el-button @click="$router.go(-1)" icon="el-icon-arrow-left" size="small">����</el-button></div>
+  <!-- 导入�?-->
+  <el-dialog title="导入�? :visible.sync="visible" width="800px" top="5vh" append-to-body>
     <el-form :model="queryParams" ref="queryForm" size="small" :inline="true">
-      <el-form-item label="表名称" prop="tableName">
+      <el-form-item label="表名�? prop="tableName">
         <el-input
           v-model="queryParams.tableName"
           placeholder="请输入表名称"
@@ -10,7 +10,7 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="表描述" prop="tableComment">
+      <el-form-item label="表描�? prop="tableComment">
         <el-input
           v-model="queryParams.tableComment"
           placeholder="请输入表描述"
@@ -26,8 +26,8 @@
     <el-row>
       <el-table @row-click="clickRow" ref="table" :data="dbTableList" @selection-change="handleSelectionChange" height="260px">
         <el-table-column type="selection" width="55"></el-table-column>
-        <el-table-column prop="tableName" label="表名称" :show-overflow-tooltip="true"></el-table-column>
-        <el-table-column prop="tableComment" label="表描述" :show-overflow-tooltip="true"></el-table-column>
+        <el-table-column prop="tableName" label="表名�? :show-overflow-tooltip="true"></el-table-column>
+        <el-table-column prop="tableComment" label="表描�? :show-overflow-tooltip="true"></el-table-column>
         <el-table-column prop="createTime" label="创建时间"></el-table-column>
         <el-table-column prop="updateTime" label="更新时间"></el-table-column>
       </el-table>
@@ -40,8 +40,8 @@
       />
     </el-row>
     <div slot="footer" class="dialog-footer">
-      <el-button type="primary" @click="handleImportTable">确 定</el-button>
-      <el-button @click="visible = false">取 消</el-button>
+      <el-button type="primary" @click="handleImportTable">�?�?/el-button>
+      <el-button @click="visible = false">�?�?/el-button>
     </div>
   </el-dialog>
 </template>
@@ -51,13 +51,13 @@ import { listDbTable, importTable } from "@/api/tool/gen"
 export default {
   data() {
     return {
-      // 遮罩层
+      // 遮罩�?
       visible: false,
-      // 选中数组值
+      // 选中数组�?
       tables: [],
-      // 总条数
+      // 总条�?
       total: 0,
-      // 表数据
+      // 表数�?
       dbTableList: [],
       // 查询参数
       queryParams: {
@@ -81,7 +81,7 @@ export default {
     handleSelectionChange(selection) {
       this.tables = selection.map(item => item.tableName)
     },
-    // 查询表数据
+    // 查询表数�?
     getList() {
       listDbTable(this.queryParams).then(res => {
         if (res.code === 200) {
@@ -104,7 +104,7 @@ export default {
     handleImportTable() {
       const tableNames = this.tables.join(",")
       if (tableNames == "") {
-        this.$modal.msgError("请选择要导入的表")
+        this.$modal.msgError("请选择要导入的�?)
         return
       }
       importTable({ tables: tableNames, tplWebType: 'element-ui' }).then(res => {
@@ -118,3 +118,4 @@ export default {
   }
 }
 </script>
+

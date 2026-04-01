@@ -1,9 +1,9 @@
-<template>
+<template><div class="back-button"><el-button @click="$router.go(-1)" icon="el-icon-arrow-left" size="small">����</el-button></div>
   <el-drawer :title="drawerTitle" :visible.sync="localVisible" direction="rtl" size="700px" append-to-body>
     <div class="drawer-wrap">
       <div v-if="loading" class="drawer-loading">
         <i class="el-icon-loading"></i>
-        <span>加载中...</span>
+        <span>加载�?..</span>
       </div>
       <div v-else-if="!dataList.length" class="drawer-empty">
         <i class="el-icon-document"></i>
@@ -39,11 +39,11 @@
             </div>
           </div>
           <div class="dict-cell">
-            <div class="dict-cell-key">键值</div>
+            <div class="dict-cell-key">键�?/div>
             <div class="dict-cell-val">{{ item.dictValue }}</div>
           </div>
           <div class="dict-cell">
-            <div class="dict-cell-key">状态</div>
+            <div class="dict-cell-key">状�?/div>
             <div class="dict-cell-val">
               <el-tag :type="item.status === '0' ? 'success' : 'danger'" size="small">
                 {{ item.status === '0' ? '正常' : '停用' }}
@@ -201,3 +201,4 @@ export default {
   align-items: center;
 }
 </style>
+

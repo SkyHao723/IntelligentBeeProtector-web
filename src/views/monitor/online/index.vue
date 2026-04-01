@@ -1,4 +1,4 @@
-<template>
+<template><div class="back-button"><el-button @click="$router.go(-1)" icon="el-icon-arrow-left" size="small">����</el-button></div>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" label-width="68px">
       <el-form-item label="登录地址" prop="ipaddr">
@@ -12,7 +12,7 @@
       <el-form-item label="用户名称" prop="userName">
         <el-input
           v-model="queryParams.userName"
-          placeholder="请输入用户名称"
+          placeholder="请输入用户名�?
           clearable
           @keyup.enter.native="handleQuery"
         />
@@ -38,7 +38,7 @@
       <el-table-column label="部门名称" align="center" prop="deptName" />
       <el-table-column label="主机" align="center" prop="ipaddr" :show-overflow-tooltip="true" />
       <el-table-column label="登录地点" align="center" prop="loginLocation" :show-overflow-tooltip="true" />
-      <el-table-column label="浏览器" align="center" prop="browser" />
+      <el-table-column label="浏览�? align="center" prop="browser" />
       <el-table-column label="操作系统" align="center" prop="os" />
       <el-table-column label="登录时间" align="center" prop="loginTime" width="180">
         <template slot-scope="scope">
@@ -69,9 +69,9 @@ export default {
   name: "Online",
   data() {
     return {
-      // 遮罩层
+      // 遮罩�?
       loading: true,
-      // 总条数
+      // 总条�?
       total: 0,
       // 表格数据
       list: [],
@@ -109,7 +109,7 @@ export default {
     },
     /** 强退按钮操作 */
     handleForceLogout(row) {
-      this.$modal.confirm('是否确认强退名称为"' + row.userName + '"的用户？').then(function() {
+      this.$modal.confirm('是否确认强退名称�?' + row.userName + '"的用户？').then(function() {
         return forceLogout(row.tokenId)
       }).then(() => {
         this.getList()
@@ -119,4 +119,5 @@ export default {
   }
 }
 </script>
+
 

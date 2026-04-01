@@ -1,4 +1,4 @@
-<template>
+<template><div class="back-button"><el-button @click="$router.go(-1)" icon="el-icon-arrow-left" size="small">����</el-button></div>
   <div>
     <el-dialog
       v-bind="$attrs"
@@ -18,24 +18,24 @@
         >
           <el-col :span="24">
             <el-form-item
-              label="选项名"
+              label="选项�?
               prop="label"
             >
               <el-input
                 v-model="formData.label"
-                placeholder="请输入选项名"
+                placeholder="请输入选项�?
                 clearable
               />
             </el-form-item>
           </el-col>
           <el-col :span="24">
             <el-form-item
-              label="选项值"
+              label="选项�?
               prop="value"
             >
               <el-input
                 v-model="formData.value"
-                placeholder="请输入选项值"
+                placeholder="请输入选项�?
                 clearable
               >
                 <el-select
@@ -88,14 +88,14 @@ export default {
         label: [
           {
             required: true,
-            message: '请输入选项名',
+            message: '请输入选项�?,
             trigger: 'blur'
           }
         ],
         value: [
           {
             required: true,
-            message: '请输入选项值',
+            message: '请输入选项�?,
             trigger: 'blur'
           }
         ]
@@ -103,7 +103,7 @@ export default {
       dataType: 'string',
       dataTypeOptions: [
         {
-          label: '字符串',
+          label: '字符�?,
           value: 'string'
         },
         {
@@ -146,3 +146,4 @@ export default {
   }
 }
 </script>
+

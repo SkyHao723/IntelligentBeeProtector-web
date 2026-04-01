@@ -1,4 +1,4 @@
-<template>
+﻿<template><div class="back-button"><el-button @click="$router.go(-1)" icon="el-icon-arrow-left" size="small">返回</el-button></div>
   <div class="icon-dialog">
     <el-dialog
       v-bind="$attrs"
@@ -9,12 +9,12 @@
       @close="onClose"
     >
       <div slot="title">
-        选择图标
+        閫夋嫨鍥炬爣
         <el-input
           v-model="key"
           size="mini"
           :style="{width: '260px'}"
-          placeholder="请输入图标名称"
+          placeholder="璇疯緭鍏ュ浘鏍囧悕绉?
           prefix-icon="el-icon-search"
           clearable
         />
@@ -120,4 +120,6 @@ export default {
     }
   }
 }
-</style>
+.back-button { position: absolute; top: 10px; left: 10px; z-index: 1000; }</style>
+
+

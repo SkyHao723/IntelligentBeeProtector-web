@@ -1,22 +1,25 @@
-<template>
+﻿<template><div class="back-button"><el-button @click="$router.go(-1)" icon="el-icon-arrow-left" size="small">返回</el-button></div>
   <div class="about-page">
+    <div class="page-back-btn">
+      <el-button type="text" icon="el-icon-arrow-left" @click="goBack" class="back-button">杩斿洖</el-button>
+    </div>
     <div class="page-header">
-      <h2 class="page-title">关于我们</h2>
-      <p class="page-subtitle">智能蜂箱管理系统</p>
+      <h2 class="page-title">鍏充簬鎴戜滑</h2>
+      <p class="page-subtitle">鏅鸿兘铚傜绠＄悊绯荤粺</p>
     </div>
 
     <div class="content-section">
       <div class="section-header">
-        <h3 class="section-title">系统介绍</h3>
+        <h3 class="section-title">绯荤粺浠嬬粛</h3>
       </div>
       <div class="section-content">
-        <p>智能蜂箱管理系统是一个基于物联网技术的蜜蜂养殖监控与管理平台。系统通过传感器网络实时监测蜂箱环境参数，利用人工智能算法分析蜜蜂行为，为养蜂人提供科学的养殖决策支持。</p>
+        <p>鏅鸿兘铚傜绠＄悊绯荤粺鏄竴涓熀浜庣墿鑱旂綉鎶€鏈殑铚滆渹鍏绘畺鐩戞帶涓庣鐞嗗钩鍙般€傜郴缁熼€氳繃浼犳劅鍣ㄧ綉缁滃疄鏃剁洃娴嬭渹绠辩幆澧冨弬鏁帮紝鍒╃敤浜哄伐鏅鸿兘绠楁硶鍒嗘瀽铚滆渹琛屼负锛屼负鍏昏渹浜烘彁渚涚瀛︾殑鍏绘畺鍐崇瓥鏀寔銆?/p>
       </div>
     </div>
 
     <div class="content-section">
       <div class="section-header">
-        <h3 class="section-title">主要功能</h3>
+        <h3 class="section-title">涓昏鍔熻兘</h3>
       </div>
       <div class="features-grid">
         <div class="feature-item">
@@ -24,8 +27,8 @@
             <svg-icon icon-class="monitor" />
           </div>
           <div class="feature-content">
-            <h4>实时监控</h4>
-            <p>24小时不间断监控蜂箱温度、湿度、重量等关键参数</p>
+            <h4>瀹炴椂鐩戞帶</h4>
+            <p>24灏忔椂涓嶉棿鏂洃鎺ц渹绠辨俯搴︺€佹箍搴︺€侀噸閲忕瓑鍏抽敭鍙傛暟</p>
           </div>
         </div>
         <div class="feature-item">
@@ -33,8 +36,8 @@
             <svg-icon icon-class="warning" />
           </div>
           <div class="feature-content">
-            <h4>智能预警</h4>
-            <p>基于AI算法识别异常行为，及时发出预警通知</p>
+            <h4>鏅鸿兘棰勮</h4>
+            <p>鍩轰簬AI绠楁硶璇嗗埆寮傚父琛屼负锛屽強鏃跺彂鍑洪璀﹂€氱煡</p>
           </div>
         </div>
         <div class="feature-item">
@@ -42,8 +45,8 @@
             <svg-icon icon-class="chart" />
           </div>
           <div class="feature-content">
-            <h4>数据分析</h4>
-            <p>可视化数据报表，帮助分析蜜蜂生长趋势</p>
+            <h4>鏁版嵁鍒嗘瀽</h4>
+            <p>鍙鍖栨暟鎹姤琛紝甯姪鍒嗘瀽铚滆渹鐢熼暱瓒嬪娍</p>
           </div>
         </div>
         <div class="feature-item">
@@ -51,8 +54,8 @@
             <svg-icon icon-class="history" />
           </div>
           <div class="feature-content">
-            <h4>历史记录</h4>
-            <p>完整的历史数据存储与查询功能</p>
+            <h4>鍘嗗彶璁板綍</h4>
+            <p>瀹屾暣鐨勫巻鍙叉暟鎹瓨鍌ㄤ笌鏌ヨ鍔熻兘</p>
           </div>
         </div>
       </div>
@@ -60,16 +63,16 @@
 
     <div class="content-section">
       <div class="section-header">
-        <h3 class="section-title">技术架构</h3>
+        <h3 class="section-title">鎶€鏈灦鏋?/h3>
       </div>
       <div class="section-content">
-        <p>系统采用前后端分离架构，前端使用Vue.js + Element UI，后端基于Spring Boot微服务架构，数据库使用MySQL，消息队列使用RabbitMQ，缓存使用Redis。</p>
+        <p>绯荤粺閲囩敤鍓嶅悗绔垎绂绘灦鏋勶紝鍓嶇浣跨敤Vue.js + Element UI锛屽悗绔熀浜嶴pring Boot寰湇鍔℃灦鏋勶紝鏁版嵁搴撲娇鐢∕ySQL锛屾秷鎭槦鍒椾娇鐢≧abbitMQ锛岀紦瀛樹娇鐢≧edis銆?/p>
       </div>
     </div>
 
     <div class="content-section">
       <div class="section-header">
-        <h3 class="section-title">联系我们</h3>
+        <h3 class="section-title">鑱旂郴鎴戜滑</h3>
       </div>
       <div class="contact-info">
         <div class="contact-item">
@@ -82,25 +85,44 @@
         </div>
         <div class="contact-item">
           <svg-icon icon-class="location" class="contact-icon" />
-          <span>北京市海淀区中关村科技园</span>
+          <span>鍖椾含甯傛捣娣€鍖轰腑鍏虫潙绉戞妧鍥?/span>
         </div>
       </div>
     </div>
 
     <div class="version-info">
-      <p>当前版本：v1.0.0</p>
-      <p>最后更新：2026年3月</p>
+      <p>褰撳墠鐗堟湰锛歷1.0.0</p>
+      <p>鏈€鍚庢洿鏂帮細2026骞?鏈?/p>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'About'
+  name: 'About',
+  methods: {
+    goBack() {
+      this.$router.go(-1)
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
+.page-back-btn {
+  padding: 0 0 12px 0;
+  margin-bottom: 8px;
+
+  .back-button {
+    color: #409EFF;
+    font-size: 14px;
+    
+    &:hover {
+      color: #66b1ff;
+    }
+  }
+}
+
 .about-page {
   padding: 20px;
   padding-bottom: 80px;
@@ -233,4 +255,5 @@ export default {
     margin: 4px 0;
   }
 }
-</style>
+.back-button { position: absolute; top: 10px; left: 10px; z-index: 1000; }</style>
+

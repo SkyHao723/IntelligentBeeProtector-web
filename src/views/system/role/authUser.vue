@@ -1,10 +1,10 @@
-<template>
+<template><div class="back-button"><el-button @click="$router.go(-1)" icon="el-icon-arrow-left" size="small">����</el-button></div>
   <div class="app-container">
      <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch">
       <el-form-item label="用户名称" prop="userName">
         <el-input
           v-model="queryParams.userName"
-          placeholder="请输入用户名称"
+          placeholder="请输入用户名�?
           clearable
           style="width: 240px"
           @keyup.enter.native="handleQuery"
@@ -13,7 +13,7 @@
       <el-form-item label="手机号码" prop="phonenumber">
         <el-input
           v-model="queryParams.phonenumber"
-          placeholder="请输入手机号码"
+          placeholder="请输入手机号�?
           clearable
           style="width: 240px"
           @keyup.enter.native="handleQuery"
@@ -65,7 +65,7 @@
       <el-table-column label="用户昵称" prop="nickName" :show-overflow-tooltip="true" />
       <el-table-column label="邮箱" prop="email" :show-overflow-tooltip="true" />
       <el-table-column label="手机" prop="phonenumber" :show-overflow-tooltip="true" />
-      <el-table-column label="状态" align="center" prop="status">
+      <el-table-column label="状�? align="center" prop="status">
         <template slot-scope="scope">
           <dict-tag :options="dict.type.sys_normal_disable" :value="scope.row.status"/>
         </template>
@@ -109,15 +109,15 @@ export default {
   components: { selectUser },
   data() {
     return {
-      // 遮罩层
+      // 遮罩�?
       loading: true,
-      // 选中用户组
+      // 选中用户�?
       userIds: [],
-      // 非多个禁用
+      // 非多个禁�?
       multiple: true,
       // 显示搜索条件
       showSearch: true,
-      // 总条数
+      // 总条�?
       total: 0,
       // 用户表格数据
       userList: [],
@@ -169,7 +169,7 @@ export default {
       this.userIds = selection.map(item => item.userId)
       this.multiple = !selection.length
     },
-    /** 打开授权用户表弹窗 */
+    /** 打开授权用户表弹�?*/
     openSelectUser() {
       this.$refs.select.show()
     },

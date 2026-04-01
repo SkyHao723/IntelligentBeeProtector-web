@@ -1,10 +1,13 @@
-<template>
+<template><div class="back-button"><el-button @click="$router.go(-1)" icon="el-icon-arrow-left" size="small">����</el-button></div>
   <div class="app-container">
+    <div class="page-back-btn">
+      <el-button type="text" icon="el-icon-arrow-left" @click="goBack" class="back-button">返回</el-button>
+    </div>
     <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
       <el-form-item label="岗位编码" prop="postCode">
         <el-input
           v-model="queryParams.postCode"
-          placeholder="请输入岗位编码"
+          placeholder="请输入岗位编�?
           clearable
           @keyup.enter.native="handleQuery"
         />
@@ -12,13 +15,13 @@
       <el-form-item label="岗位名称" prop="postName">
         <el-input
           v-model="queryParams.postName"
-          placeholder="请输入岗位名称"
+          placeholder="请输入岗位名�?
           clearable
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="状态" prop="status">
-        <el-select v-model="queryParams.status" placeholder="岗位状态" clearable>
+      <el-form-item label="状�? prop="status">
+        <el-select v-model="queryParams.status" placeholder="岗位状�? clearable>
           <el-option
             v-for="dict in dict.type.sys_normal_disable"
             :key="dict.value"
@@ -85,7 +88,7 @@
       <el-table-column label="岗位编码" align="center" prop="postCode" />
       <el-table-column label="岗位名称" align="center" prop="postName" />
       <el-table-column label="岗位排序" align="center" prop="postSort" />
-      <el-table-column label="状态" align="center" prop="status">
+      <el-table-column label="状�? align="center" prop="status">
         <template slot-scope="scope">
           <dict-tag :options="dict.type.sys_normal_disable" :value="scope.row.status"/>
         </template>
@@ -127,15 +130,15 @@
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="岗位名称" prop="postName">
-          <el-input v-model="form.postName" placeholder="请输入岗位名称" />
+          <el-input v-model="form.postName" placeholder="请输入岗位名�? />
         </el-form-item>
         <el-form-item label="岗位编码" prop="postCode">
-          <el-input v-model="form.postCode" placeholder="请输入编码名称" />
+          <el-input v-model="form.postCode" placeholder="请输入编码名�? />
         </el-form-item>
         <el-form-item label="岗位顺序" prop="postSort">
           <el-input-number v-model="form.postSort" controls-position="right" :min="0" />
         </el-form-item>
-        <el-form-item label="岗位状态" prop="status">
+        <el-form-item label="岗位状�? prop="status">
           <el-radio-group v-model="form.status">
             <el-radio
               v-for="dict in dict.type.sys_normal_disable"
@@ -145,12 +148,12 @@
           </el-radio-group>
         </el-form-item>
         <el-form-item label="备注" prop="remark">
-          <el-input v-model="form.remark" type="textarea" placeholder="请输入内容" />
+          <el-input v-model="form.remark" type="textarea" placeholder="请输入内�? />
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="submitForm">确 定</el-button>
-        <el-button @click="cancel">取 消</el-button>
+        <el-button type="primary" @click="submitForm">�?�?/el-button>
+        <el-button @click="cancel">�?�?/el-button>
       </div>
     </el-dialog>
   </div>
@@ -164,23 +167,23 @@ export default {
   dicts: ['sys_normal_disable'],
   data() {
     return {
-      // 遮罩层
+      // 遮罩�?
       loading: true,
       // 选中数组
       ids: [],
-      // 非单个禁用
+      // 非单个禁�?
       single: true,
-      // 非多个禁用
+      // 非多个禁�?
       multiple: true,
       // 显示搜索条件
       showSearch: true,
-      // 总条数
+      // 总条�?
       total: 0,
       // 岗位表格数据
       postList: [],
-      // 弹出层标题
+      // 弹出层标�?
       title: "",
-      // 是否显示弹出层
+      // 是否显示弹出�?
       open: false,
       // 查询参数
       queryParams: {
@@ -210,6 +213,9 @@ export default {
     this.getList()
   },
   methods: {
+    goBack() {
+      this.$router.go(-1)
+    },
     /** 查询岗位列表 */
     getList() {
       this.loading = true
@@ -291,7 +297,7 @@ export default {
     /** 删除按钮操作 */
     handleDelete(row) {
       const postIds = row.postId || this.ids
-      this.$modal.confirm('是否确认删除岗位编号为"' + postIds + '"的数据项？').then(function() {
+      this.$modal.confirm('是否确认删除岗位编号�?' + postIds + '"的数据项�?).then(function() {
         return delPost(postIds)
       }).then(() => {
         this.getList()
@@ -307,3 +313,4 @@ export default {
   }
 }
 </script>
+

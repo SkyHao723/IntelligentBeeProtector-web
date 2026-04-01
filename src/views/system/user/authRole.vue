@@ -1,4 +1,4 @@
-<template>
+<template><div class="back-button"><el-button @click="$router.go(-1)" icon="el-icon-arrow-left" size="small">����</el-button></div>
   <div class="app-container">
     <h4 class="form-header h4">基本信息</h4>
     <el-form ref="form" :model="form" label-width="80px">
@@ -52,7 +52,7 @@ export default {
   name: "AuthRole",
   data() {
     return {
-      // 遮罩层
+      // 遮罩�?
       loading: true,
       // 分页信息
       total: 0,
@@ -86,7 +86,7 @@ export default {
     }
   },
   methods: {
-    /** 单击选中行数据 */
+    /** 单击选中行数�?*/
     clickRow(row) {
       if (this.checkSelectable(row)) {
         this.$refs.table.toggleRowSelection(row)
@@ -96,11 +96,11 @@ export default {
     handleSelectionChange(selection) {
       this.roleIds = selection.map((item) => item.roleId)
     },
-    // 保存选中的数据编号
+    // 保存选中的数据编�?
     getRowKey(row) {
       return row.roleId
     },
-    // 检查角色状态
+    // 检查角色状�?
     checkSelectable(row) {
       return row.status === "0" ? true : false
     },

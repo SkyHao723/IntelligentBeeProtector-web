@@ -1,4 +1,4 @@
-<template>
+<template><div class="back-button"><el-button @click="$router.go(-1)" icon="el-icon-arrow-left" size="small">����</el-button></div>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
       <el-form-item label="操作地址" prop="operIp">
@@ -13,7 +13,7 @@
       <el-form-item label="系统模块" prop="title">
         <el-input
           v-model="queryParams.title"
-          placeholder="请输入系统模块"
+          placeholder="请输入系统模�?
           clearable
           style="width: 240px;"
           @keyup.enter.native="handleQuery"
@@ -22,7 +22,7 @@
       <el-form-item label="操作人员" prop="operName">
         <el-input
           v-model="queryParams.operName"
-          placeholder="请输入操作人员"
+          placeholder="请输入操作人�?
           clearable
           style="width: 240px;"
           @keyup.enter.native="handleQuery"
@@ -43,10 +43,10 @@
           />
         </el-select>
       </el-form-item>
-      <el-form-item label="状态" prop="status">
+      <el-form-item label="状�? prop="status">
         <el-select
           v-model="queryParams.status"
-          placeholder="操作状态"
+          placeholder="操作状�?
           clearable
           style="width: 240px"
         >
@@ -65,7 +65,7 @@
           value-format="yyyy-MM-dd HH:mm:ss"
           type="daterange"
           range-separator="-"
-          start-placeholder="开始日期"
+          start-placeholder="开始日�?
           end-placeholder="结束日期"
           :default-time="['00:00:00', '23:59:59']"
         ></el-date-picker>
@@ -123,7 +123,7 @@
       <el-table-column label="操作人员" align="center" prop="operName" width="110" :show-overflow-tooltip="true" sortable="custom" :sort-orders="['descending', 'ascending']" />
       <el-table-column label="操作地址" align="center" prop="operIp" width="130" :show-overflow-tooltip="true" />
       <el-table-column label="操作地点" align="center" prop="operLocation" :show-overflow-tooltip="true" />
-      <el-table-column label="操作状态" align="center" prop="status">
+      <el-table-column label="操作状�? align="center" prop="status">
         <template slot-scope="scope">
           <dict-tag :options="dict.type.sys_common_status" :value="scope.row.status"/>
         </template>
@@ -133,7 +133,7 @@
           <span>{{ parseTime(scope.row.operTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="消耗时间" align="center" prop="costTime" width="110" :show-overflow-tooltip="true" sortable="custom" :sort-orders="['descending', 'ascending']">
+      <el-table-column label="消耗时�? align="center" prop="costTime" width="110" :show-overflow-tooltip="true" sortable="custom" :sort-orders="['descending', 'ascending']">
         <template slot-scope="scope">
           <span>{{ scope.row.costTime }}毫秒</span>
         </template>
@@ -173,19 +173,19 @@ export default {
   dicts: ['sys_oper_type', 'sys_common_status'],
   data() {
     return {
-      // 遮罩层
+      // 遮罩�?
       loading: true,
       // 选中数组
       ids: [],
-      // 非多个禁用
+      // 非多个禁�?
       multiple: true,
       // 显示搜索条件
       showSearch: true,
-      // 总条数
+      // 总条�?
       total: 0,
       // 表格数据
       list: [],
-      // 是否显示弹出层
+      // 是否显示弹出�?
       detailVisible: false,
       detailRow: {},
       // 日期范围
@@ -251,7 +251,7 @@ export default {
     /** 删除按钮操作 */
     handleDelete(row) {
       const operIds = row.operId || this.ids
-      this.$modal.confirm('是否确认删除日志编号为"' + operIds + '"的数据项？').then(function() {
+      this.$modal.confirm('是否确认删除日志编号�?' + operIds + '"的数据项�?).then(function() {
         return delOperlog(operIds)
       }).then(() => {
         this.getList()
@@ -260,7 +260,7 @@ export default {
     },
     /** 清空按钮操作 */
     handleClean() {
-      this.$modal.confirm('是否确认清空所有操作日志数据项？').then(function() {
+      this.$modal.confirm('是否确认清空所有操作日志数据项�?).then(function() {
         return cleanOperlog()
       }).then(() => {
         this.getList()
@@ -276,4 +276,5 @@ export default {
   }
 }
 </script>
+
 

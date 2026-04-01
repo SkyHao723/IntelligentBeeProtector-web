@@ -1,4 +1,4 @@
-<template>
+﻿<template><div class="back-button"><el-button @click="$router.go(-1)" icon="el-icon-arrow-left" size="small">返回</el-button></div>
   <div class="wscn-http404-container">
     <div class="wscn-http404">
       <div class="pic-404">
@@ -9,16 +9,16 @@
       </div>
       <div class="bullshit">
         <div class="bullshit__oops">
-          404错误!
+          404閿欒!
         </div>
         <div class="bullshit__headline">
           {{ message }}
         </div>
         <div class="bullshit__info">
-          对不起，您正在寻找的页面不存在。尝试检查URL的错误，然后按浏览器上的刷新按钮或尝试在我们的应用程序中找到其他内容。
+          瀵逛笉璧凤紝鎮ㄦ鍦ㄥ鎵剧殑椤甸潰涓嶅瓨鍦ㄣ€傚皾璇曟鏌RL鐨勯敊璇紝鐒跺悗鎸夋祻瑙堝櫒涓婄殑鍒锋柊鎸夐挳鎴栧皾璇曞湪鎴戜滑鐨勫簲鐢ㄧ▼搴忎腑鎵惧埌鍏朵粬鍐呭銆?
         </div>
         <router-link to="/" class="bullshit__return-home">
-          返回首页
+          杩斿洖棣栭〉
         </router-link>
       </div>
     </div>
@@ -31,7 +31,7 @@ export default {
   name: 'Page404',
   computed: {
     message() {
-      return '找不到网页！'
+      return '鎵句笉鍒扮綉椤碉紒'
     }
   }
 }
@@ -230,4 +230,6 @@ export default {
     }
   }
 }
-</style>
+.back-button { position: absolute; top: 10px; left: 10px; z-index: 1000; }</style>
+
+

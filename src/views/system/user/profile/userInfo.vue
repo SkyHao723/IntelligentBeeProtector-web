@@ -1,4 +1,4 @@
-<template>
+<template><div class="back-button"><el-button @click="$router.go(-1)" icon="el-icon-arrow-left" size="small">·µ»Ø</el-button></div>
   <el-form ref="form" :model="form" :rules="rules" label-width="80px">
     <el-form-item label="ç”¨æˆ·æ˜µç§°" prop="nickName">
       <el-input v-model="form.nickName" maxlength="30" />
@@ -11,8 +11,8 @@
     </el-form-item>
     <el-form-item label="æ€§åˆ«">
       <el-radio-group v-model="form.sex">
-        <el-radio label="0">ç”·</el-radio>
-        <el-radio label="1">å¥³</el-radio>
+        <el-radio label="0">ç”?/el-radio>
+        <el-radio label="1">å¥?/el-radio>
       </el-radio-group>
     </el-form-item>
     <el-form-item>
@@ -86,3 +86,4 @@ export default {
   }
 }
 </script>
+

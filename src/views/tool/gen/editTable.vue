@@ -1,4 +1,4 @@
-<template>
+<template><div class="back-button"><el-button @click="$router.go(-1)" icon="el-icon-arrow-left" size="small">����</el-button></div>
   <el-card>
     <el-tabs v-model="activeName">
       <el-tab-pane label="基本信息" name="basic">
@@ -32,7 +32,7 @@
               </el-select>
             </template>
           </el-table-column>
-          <el-table-column label="java属性" min-width="10%">
+          <el-table-column label="java属�? min-width="10%">
             <template slot-scope="scope">
               <el-input v-model="scope.row.javaField"></el-input>
             </template>
@@ -80,15 +80,15 @@
           <el-table-column label="显示类型" min-width="12%">
             <template slot-scope="scope">
               <el-select v-model="scope.row.htmlType">
-                <el-option label="文本框" value="input" />
-                <el-option label="文本域" value="textarea" />
-                <el-option label="下拉框" value="select" />
+                <el-option label="文本�? value="input" />
+                <el-option label="文本�? value="textarea" />
+                <el-option label="下拉�? value="select" />
                 <el-option label="单选框" value="radio" />
                 <el-option label="复选框" value="checkbox" />
                 <el-option label="日期控件" value="datetime" />
                 <el-option label="图片上传" value="imageUpload" />
                 <el-option label="文件上传" value="fileUpload" />
-                <el-option label="富文本控件" value="editor" />
+                <el-option label="富文本控�? value="editor" />
               </el-select>
             </template>
           </el-table-column>
@@ -139,9 +139,9 @@ export default {
     return {
       // 选中选项卡的 name
       activeName: "columnInfo",
-      // 表格的高度
+      // 表格的高�?
       tableHeight: document.documentElement.scrollHeight - 245 + "px",
-      // 表信息
+      // 表信�?
       tables: [],
       // 表列信息
       columns: [],
@@ -149,14 +149,14 @@ export default {
       dictOptions: [],
       // 菜单信息
       menus: [],
-      // 表详细信息
+      // 表详细信�?
       info: {}
     }
   },
   created() {
     const tableId = this.$route.params && this.$route.params.tableId
     if (tableId) {
-      // 获取表详细信息
+      // 获取表详细信�?
       getGenTable(tableId).then(res => {
         this.columns = res.data.rows
         this.info = res.data.info
@@ -195,7 +195,7 @@ export default {
             }
           })
         } else {
-          this.$modal.msgError("表单校验未通过，请重新检查提交内容")
+          this.$modal.msgError("表单校验未通过，请重新检查提交内�?)
         }
       })
     },
@@ -227,3 +227,4 @@ export default {
   }
 }
 </script>
+

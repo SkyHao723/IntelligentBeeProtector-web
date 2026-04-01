@@ -1,9 +1,9 @@
-<template>
+<template><div class="back-button"><el-button @click="$router.go(-1)" icon="el-icon-arrow-left" size="small">����</el-button></div>
   <el-form ref="form" :model="user" :rules="rules" label-width="80px">
-    <el-form-item label="旧密码" prop="oldPassword">
+    <el-form-item label="旧密�? prop="oldPassword">
       <el-input v-model="user.oldPassword" placeholder="请输入旧密码" type="password" show-password/>
     </el-form-item>
-    <el-form-item label="新密码" prop="newPassword">
+    <el-form-item label="新密�? prop="newPassword">
       <el-input v-model="user.newPassword" placeholder="请输入新密码" type="password" show-password/>
     </el-form-item>
     <el-form-item label="确认密码" prop="confirmPassword">
@@ -23,7 +23,7 @@ export default {
   data() {
     const equalToPassword = (rule, value, callback) => {
       if (this.user.newPassword !== value) {
-        callback(new Error("两次输入的密码不一致"))
+        callback(new Error("两次输入的密码不一�?))
       } else {
         callback()
       }
@@ -37,12 +37,12 @@ export default {
       // 表单校验
       rules: {
         oldPassword: [
-          { required: true, message: "旧密码不能为空", trigger: "blur" }
+          { required: true, message: "旧密码不能为�?, trigger: "blur" }
         ],
         newPassword: [
-          { required: true, message: "新密码不能为空", trigger: "blur" },
-          { min: 6, max: 20, message: "长度在 6 到 20 个字符", trigger: "blur" },
-          { pattern: /^[^<>"'|\\]+$/, message: "不能包含非法字符：< > \" ' \\\ |", trigger: "blur" }
+          { required: true, message: "新密码不能为�?, trigger: "blur" },
+          { min: 6, max: 20, message: "长度�?6 �?20 个字�?, trigger: "blur" },
+          { pattern: /^[^<>"'|\\]+$/, message: "不能包含非法字符�? > \" ' \\\ |", trigger: "blur" }
         ],
         confirmPassword: [
           { required: true, message: "确认密码不能为空", trigger: "blur" },
@@ -67,3 +67,4 @@ export default {
   }
 }
 </script>
+

@@ -1,4 +1,4 @@
-<template>
+<template><div class="back-button"><el-button @click="$router.go(-1)" icon="el-icon-arrow-left" size="small">·µ»Ø</el-button></div>
   <div :class="className" :style="{height:height,width:width}" />
 </template>
 
@@ -133,3 +133,4 @@ export default {
   }
 }
 </script>
+

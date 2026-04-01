@@ -1,19 +1,19 @@
-<template>
+﻿<template><div class="back-button"><el-button @click="$router.go(-1)" icon="el-icon-arrow-left" size="small">返回</el-button></div>
   <div class="errPage-container">
     <el-button icon="arrow-left" class="pan-back-btn" @click="back">
-      返回
+      杩斿洖
     </el-button>
     <el-row>
       <el-col :span="12">
         <h1 class="text-jumbo text-ginormous">
-          401错误!
+          401閿欒!
         </h1>
-        <h2>您没有访问权限！</h2>
-        <h6>对不起，您没有访问权限，请不要进行非法操作！您可以返回主页面</h6>
+        <h2>鎮ㄦ病鏈夎闂潈闄愶紒</h2>
+        <h6>瀵逛笉璧凤紝鎮ㄦ病鏈夎闂潈闄愶紝璇蜂笉瑕佽繘琛岄潪娉曟搷浣滐紒鎮ㄥ彲浠ヨ繑鍥炰富椤甸潰</h6>
         <ul class="list-unstyled">
           <li class="link-type">
             <router-link to="/">
-              回首页
+              鍥為椤?
             </router-link>
           </li>
         </ul>
@@ -85,4 +85,6 @@ export default {
       }
     }
   }
-</style>
+.back-button { position: absolute; top: 10px; left: 10px; z-index: 1000; }</style>
+
+

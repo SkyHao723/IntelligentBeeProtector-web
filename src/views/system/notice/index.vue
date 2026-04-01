@@ -1,10 +1,13 @@
-<template>
+<template><div class="back-button"><el-button @click="$router.go(-1)" icon="el-icon-arrow-left" size="small">����</el-button></div>
   <div class="app-container">
+    <div class="page-back-btn">
+      <el-button type="text" icon="el-icon-arrow-left" @click="goBack" class="back-button">返回</el-button>
+    </div>
     <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
       <el-form-item label="公告标题" prop="noticeTitle">
         <el-input
           v-model="queryParams.noticeTitle"
-          placeholder="请输入公告标题"
+          placeholder="请输入公告标�?
           clearable
           @keyup.enter.native="handleQuery"
         />
@@ -12,7 +15,7 @@
       <el-form-item label="操作人员" prop="createBy">
         <el-input
           v-model="queryParams.createBy"
-          placeholder="请输入操作人员"
+          placeholder="请输入操作人�?
           clearable
           @keyup.enter.native="handleQuery"
         />
@@ -83,12 +86,12 @@
           <dict-tag :options="dict.type.sys_notice_type" :value="scope.row.noticeType"/>
         </template>
       </el-table-column>
-      <el-table-column label="状态" align="center" prop="status" width="100">
+      <el-table-column label="状�? align="center" prop="status" width="100">
         <template slot-scope="scope">
           <dict-tag :options="dict.type.sys_notice_status" :value="scope.row.status"/>
         </template>
       </el-table-column>
-      <el-table-column label="创建者" align="center" prop="createBy" width="100" />
+      <el-table-column label="创建�? align="center" prop="createBy" width="100" />
       <el-table-column label="创建时间" align="center" prop="createTime" width="100">
         <template slot-scope="scope">
           <span>{{ parseTime(scope.row.createTime, '{y}-{m}-{d}') }}</span>
@@ -128,7 +131,7 @@
         <el-row>
           <el-col :span="12">
             <el-form-item label="公告标题" prop="noticeTitle">
-              <el-input v-model="form.noticeTitle" placeholder="请输入公告标题" />
+              <el-input v-model="form.noticeTitle" placeholder="请输入公告标�? />
             </el-form-item>
           </el-col>
           <el-col :span="12">
@@ -144,7 +147,7 @@
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="状态">
+            <el-form-item label="状�?>
               <el-radio-group v-model="form.status">
                 <el-radio
                   v-for="dict in dict.type.sys_notice_status"
@@ -162,8 +165,8 @@
         </el-row>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="submitForm">确 定</el-button>
-        <el-button @click="cancel">取 消</el-button>
+        <el-button type="primary" @click="submitForm">�?�?/el-button>
+        <el-button @click="cancel">�?�?/el-button>
       </div>
     </el-dialog>
   </div>
@@ -177,23 +180,23 @@ export default {
   dicts: ['sys_notice_status', 'sys_notice_type'],
   data() {
     return {
-      // 遮罩层
+      // 遮罩�?
       loading: true,
       // 选中数组
       ids: [],
-      // 非单个禁用
+      // 非单个禁�?
       single: true,
-      // 非多个禁用
+      // 非多个禁�?
       multiple: true,
       // 显示搜索条件
       showSearch: true,
-      // 总条数
+      // 总条�?
       total: 0,
       // 公告表格数据
       noticeList: [],
-      // 弹出层标题
+      // 弹出层标�?
       title: "",
-      // 是否显示弹出层
+      // 是否显示弹出�?
       open: false,
       // 查询参数
       queryParams: {
@@ -220,6 +223,9 @@ export default {
     this.getList()
   },
   methods: {
+    goBack() {
+      this.$router.go(-1)
+    },
     /** 查询公告列表 */
     getList() {
       this.loading = true
@@ -300,7 +306,7 @@ export default {
     /** 删除按钮操作 */
     handleDelete(row) {
       const noticeIds = row.noticeId || this.ids
-      this.$modal.confirm('是否确认删除公告编号为"' + noticeIds + '"的数据项？').then(function() {
+      this.$modal.confirm('是否确认删除公告编号�?' + noticeIds + '"的数据项�?).then(function() {
         return delNotice(noticeIds)
       }).then(() => {
         this.getList()
@@ -310,3 +316,4 @@ export default {
   }
 }
 </script>
+
