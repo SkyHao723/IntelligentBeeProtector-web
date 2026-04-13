@@ -1,42 +1,42 @@
-﻿<template>
+<template>
   <div class="bee-monitor-page">
     <div class="page-back-btn">
-      <el-button type="text" icon="el-icon-arrow-left" @click="goBack" class="back-button">杩斿洖</el-button>
+      <el-button type="text" icon="el-icon-arrow-left" @click="goBack" class="back-button">返回</el-button>
     </div>
     <div class="page-header">
-      <h2 class="page-title">瀹炴椂瑙傛祴 - 铚傜 #{{ String(beeId).padStart(3, '0') }}</h2>
-      <p class="page-subtitle">瀹炴椂鐩戞帶铚傜鍐呴儴鍜屽閮ㄦ儏锟?/p>
+      <h2 class="page-title">实时观测 - 蜂箱 #{{ String(beeId).padStart(3, '0') }}</h2>
+      <p class="page-subtitle">实时监控蜂箱内部和外部情况</p>
     </div>
 
     <div class="monitor-images">
       <div class="image-section">
-        <h3>铚傜鍐呴儴</h3>
+        <h3>蜂箱内部</h3>
         <div class="image-container">
           <div class="image-overlay">
             <div class="live-badge">LIVE</div>
             <div class="timestamp">{{ currentTime }}</div>
           </div>
-          <img :src="selectedBeePicturein" alt="铚傜鍐呴儴鍥剧墖" class="monitor-image" />
+          <img :src="selectedBeePicturein" alt="蜂箱内部图片" class="monitor-image" />
         </div>
       </div>
 
       <div class="image-section">
-        <h3>铚傜澶栭儴</h3>
+        <h3>蜂箱外部</h3>
         <div class="image-container">
           <div class="image-overlay">
             <div class="live-badge">LIVE</div>
             <div class="timestamp">{{ currentTime }}</div>
           </div>
-          <img :src="selectedBeePictureout" alt="铚傜澶栭儴鍥剧墖" class="monitor-image" />
+          <img :src="selectedBeePictureout" alt="蜂箱外部图片" class="monitor-image" />
         </div>
       </div>
     </div>
 
     <div class="control-panel">
       <el-button type="primary" icon="el-icon-camera" @click="takePhoto" :loading="takingPhoto">
-        {{ takingPhoto ? '鎷嶇収锟?..' : '涓€閿媿锟? }}
+        {{ takingPhoto ? '拍照中...' : '一键拍照' }}
       </el-button>
-      <el-button @click="goBack">杩斿洖鐩戞帶涓績</el-button>
+      <el-button @click="goBack">返回监控中心</el-button>
     </div>
   </div>
 </template>
@@ -71,12 +71,12 @@ export default {
   },
   computed: {
     selectedBeePicturein() {
-      // 鏍规嵁铚傜ID閫夋嫨鍐呴儴鍥剧墖
+      // 根据蜂箱ID选择内部图片
       const index = (this.beeId - 1) % this.beePictureinImages.length
       return this.beePictureinImages[index]
     },
     selectedBeePictureout() {
-      // 鏍规嵁铚傜ID閫夋嫨澶栭儴鍥剧墖
+      // 根据蜂箱ID选择外部图片
       const index = (this.beeId - 1) % this.beePictureoutImages.length
       return this.beePictureoutImages[index]
     }
@@ -106,26 +106,26 @@ export default {
       this.takingPhoto = true
       
       try {
-        // 妯℃嫙鎷嶇収杩囩▼
+        // 模拟拍照过程
         await this.sleep(2000)
         
-        // 鏄剧ず鎴愬姛娑堟伅
+        // 显示成功消息
         this.$message({
-          message: '鎷嶇収鎴愬姛锛佸浘鐗囧凡淇濆瓨',
+          message: '拍照成功！图片已保存',
           type: 'success',
           duration: 3000
         })
         
-        // 鍙互鍦ㄨ繖閲屾坊鍔犲疄闄呯殑鎷嶇収閫昏緫锛屾瘮濡傝皟鐢ㄦ憚鍍忓ごAPI鎴栧彂閫佽姹傚埌鍚庣
-        console.log('鎷嶇収瀹屾垚 - 铚傜 #' + this.beeId)
+        // 可以在这里添加实际的拍照逻辑，比如调用摄像头API或发送请求到后端
+        console.log('拍照完成 - 蜂箱 #' + this.beeId)
         
       } catch (error) {
         this.$message({
-          message: '鎷嶇収澶辫触锛岃閲嶈瘯',
+          message: '拍照失败，请重试',
           type: 'error',
           duration: 3000
         })
-        console.error('鎷嶇収澶辫触:', error)
+        console.error('拍照失败:', error)
       } finally {
         this.takingPhoto = false
       }
@@ -160,7 +160,7 @@ export default {
   background: #f5f7fa;
   min-height: calc(100vh - 50px);
   overflow-y: auto;
-  padding-bottom: 100px; /* 澧炲姞搴曢儴padding浠ョ‘淇濆唴瀹瑰畬鍏ㄥ彲锟?*/
+  padding-bottom: 100px; /* 增加底部padding以确保内容完全可见 */
 }
 
 .page-header {
@@ -308,5 +308,4 @@ export default {
     }
   }
 }
-.back-button { position: absolute; top: 10px; left: 10px; z-index: 1000; }</style>
-
+</style>

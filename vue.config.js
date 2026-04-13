@@ -9,7 +9,10 @@ const CompressionPlugin = require('compression-webpack-plugin')
 
 const name = process.env.VUE_APP_TITLE || '若依管理系统' // 网页标题
 
-const baseUrl = 'http://localhost:8080' // 后端接口
+// 后端接口地址 - 建议通过环境变量配置
+// 开发环境: VUE_APP_BASE_API (已在 .env.development 中配置)
+// 生产环境: 通过 Nginx 反向代理或环境变量 VUE_APP_BASE_API 配置
+const baseUrl = process.env.VUE_APP_BACKEND_URL || 'http://localhost:8080' // 后端接口
 
 const port = process.env.port || process.env.npm_config_port || 80 // 端口
 

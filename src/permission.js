@@ -42,10 +42,15 @@ router.beforeEach((to, from, next) => {
             // 根据roles权限生成可访问的路由表
             router.addRoutes(accessRoutes) // 动态添加可访问路由表
             next({ ...to, replace: true }) // hack方法 确保addRoutes已完成
+          }).catch(err => {
+            console.error('生成路由失败:', err)
+            Message.error('加载路由失败，请刷新页面重试')
+            next({ path: '/' })
           })
         }).catch(err => {
+            console.error('获取用户信息失败:', err)
             store.dispatch('LogOut').then(() => {
-              Message.error(err)
+              Message.error(err.message || '登录状态异常，请重新登录')
               next({ path: '/' })
             })
           })

@@ -1,11 +1,11 @@
-﻿<template>
+<template>
   <div class="home-page">
     <div class="page-back-btn">
-      <el-button type="text" icon="el-icon-arrow-left" @click="goBack" class="back-button">杩斿洖</el-button>
+      <el-button type="text" icon="el-icon-arrow-left" @click="goBack" class="back-button">返回</el-button>
     </div>
     <div class="page-header">
-      <h2 class="page-title">鏅鸿渹鍗＋</h2>
-      <p class="page-subtitle">鏅鸿兘铚傜绠＄悊绯荤粺</p>
+      <h2 class="page-title">智蜂卫士</h2>
+      <p class="page-subtitle">智能蜂箱管理系统</p>
     </div>
 
     <div class="stats-grid">
@@ -15,7 +15,7 @@
         </div>
         <div class="stat-info">
           <div class="stat-value">128</div>
-          <div class="stat-label">铚傜鎬绘暟</div>
+          <div class="stat-label">蜂箱总数</div>
         </div>
       </div>
 
@@ -25,7 +25,7 @@
         </div>
         <div class="stat-info">
           <div class="stat-value">96</div>
-          <div class="stat-label">鍦ㄧ嚎铚傜</div>
+          <div class="stat-label">在线蜂箱</div>
         </div>
       </div>
 
@@ -35,7 +35,7 @@
         </div>
         <div class="stat-info">
           <div class="stat-value">32</div>
-          <div class="stat-label">棰勮浜嬩欢</div>
+          <div class="stat-label">预警事件</div>
         </div>
       </div>
 
@@ -45,60 +45,60 @@
         </div>
         <div class="stat-info">
           <div class="stat-value">98.5%</div>
-          <div class="stat-label">绯荤粺鍋ュ悍锟?/div>
+          <div class="stat-label">系统健康度</div>
         </div>
       </div>
     </div>
 
     <div class="content-section">
       <div class="section-header">
-        <h3 class="section-title">蹇€熸搷锟?/h3>
+        <h3 class="section-title">快速操作</h3>
       </div>
       <div class="quick-actions">
         <div class="action-item" @click="$router.push('/monitorPage')">
           <svg-icon icon-class="eye" class="action-icon" />
-          <span>鏌ョ湅鐩戞帶</span>
+          <span>查看监控</span>
         </div>
         <div class="action-item" @click="$router.push('/historyPage')">
           <svg-icon icon-class="log" class="action-icon" />
-          <span>鍘嗗彶璁板綍</span>
+          <span>历史记录</span>
         </div>
         <div class="action-item" @click="$router.push('/myPage')">
           <svg-icon icon-class="settings" class="action-icon" />
-          <span>绯荤粺璁剧疆</span>
+          <span>系统设置</span>
         </div>
         <div class="action-item" @click="$router.push('/notifications')">
           <svg-icon icon-class="xiaoxi" class="action-icon" />
-          <span>娑堟伅閫氱煡</span>
+          <span>消息通知</span>
         </div>
       </div>
     </div>
 
     <div class="content-section">
       <div class="section-header">
-        <h3 class="section-title">鏈€鏂板姩锟?/h3>
-        <span class="view-more">鏌ョ湅鏇村</span>
+        <h3 class="section-title">最新动态</h3>
+        <span class="view-more">查看更多</span>
       </div>
       <div class="activity-list">
         <div class="activity-item">
           <div class="activity-dot"></div>
           <div class="activity-content">
-            <div class="activity-title">铚傜 #001 妫€娴嬪埌寮傚父</div>
-            <div class="activity-time">5鍒嗛挓锟?/div>
+            <div class="activity-title">蜂箱 #001 检测到异常</div>
+            <div class="activity-time">5分钟前</div>
           </div>
         </div>
         <div class="activity-item">
           <div class="activity-dot success"></div>
           <div class="activity-content">
-            <div class="activity-title">绯荤粺鍗囩骇瀹屾垚</div>
-            <div class="activity-time">1灏忔椂锟?/div>
+            <div class="activity-title">系统升级完成</div>
+            <div class="activity-time">1小时前</div>
           </div>
         </div>
         <div class="activity-item">
           <div class="activity-dot"></div>
           <div class="activity-content">
-            <div class="activity-title">鏂板铚傜 #128 涓婄嚎</div>
-            <div class="activity-time">3灏忔椂锟?/div>
+            <div class="activity-title">新增蜂箱 #128 上线</div>
+            <div class="activity-time">3小时前</div>
           </div>
         </div>
       </div>
@@ -138,8 +138,6 @@ export default {
   background: #f5f7fa;
   min-height: 100vh;
 }
-
-
 
 .page-header {
   margin-bottom: 24px;
@@ -306,6 +304,4 @@ export default {
     }
   }
 }
-.back-button { position: absolute; top: 10px; left: 10px; z-index: 1000; }</style>
-
-
+</style>

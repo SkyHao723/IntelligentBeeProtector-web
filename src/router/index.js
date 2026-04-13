@@ -77,95 +77,53 @@ export const constantRoutes = [
   // '/homePage' 路由已合并为根路径的子路由
   {
     path: '/monitorPage',
-    component: Layout,
+    component: () => import('@/views/monitorPage/index'),
+    name: 'MonitorPage',
     hidden: true,
-    children: [
-      {
-        path: '',
-        component: () => import('@/views/monitorPage/index'),
-        name: 'MonitorPage',
-        meta: { title: '监控', icon: 'monitor' }
-      }
-    ]
+    meta: { title: '监控', icon: 'monitor' }
   },
   {
     path: '/beeMonitor/:id',
-    component: Layout,
+    component: () => import('@/views/beeMonitor/index'),
+    name: 'BeeMonitor',
     hidden: true,
-    children: [
-      {
-        path: '',
-        component: () => import('@/views/beeMonitor/index'),
-        name: 'BeeMonitor',
-        meta: { title: '实时观测', icon: 'monitor' }
-      }
-    ]
+    meta: { title: '实时观测', icon: 'monitor' }
   },
   {
     path: '/historyPage',
-    component: Layout,
+    component: () => import('@/views/historyPage/index'),
+    name: 'HistoryPage',
     hidden: true,
-    children: [
-      {
-        path: '',
-        component: () => import('@/views/historyPage/index'),
-        name: 'HistoryPage',
-        meta: { title: '历史', icon: 'log' }
-      }
-    ]
+    meta: { title: '历史', icon: 'log' }
   },
   {
     path: '/myPage',
-    component: Layout,
+    component: () => import('@/views/myPage/index'),
+    name: 'MyPage',
     hidden: true,
-    children: [
-      {
-        path: '',
-        component: () => import('@/views/myPage/index'),
-        name: 'MyPage',
-        meta: { title: '我的', icon: 'user' }
-      }
-    ]
+    meta: { title: '我的', icon: 'user' }
   },
  
   {
     path: '/help',
-    component: Layout,
+    component: () => import('@/views/help/index'),
+    name: 'Help',
     hidden: true,
-    children: [
-      {
-        path: '',
-        component: () => import('@/views/help/index'),
-        name: 'Help',
-        meta: { title: '使用帮助', icon: 'documentation' }
-      }
-    ]
+    meta: { title: '使用帮助', icon: 'documentation' }
   },
   {
     path: '/notifications',
-    component: Layout,
+    component: () => import('@/views/notifications/index'),
+    name: 'Notifications',
     hidden: true,
-    children: [
-      {
-        path: '',
-        component: () => import('@/views/notifications/index'),
-        name: 'Notifications',
-        meta: { title: '消息通知', icon: 'message' }
-      }
-    ]
+    meta: { title: '消息通知', icon: 'message' }
   },
   {
     path: '/about',
-    component: Layout,
+    component: () => import('@/views/about/index'),
+    name: 'About',
     hidden: true,
-    children: [
-      {
-        path: '',
-        component: () => import('@/views/about/index'),
-        name: 'About',
-        meta: { title: '关于我们', icon: 'info' }
-      }
-    ]
+    meta: { title: '关于我们', icon: 'info' }
   },
   {
     path: '/lock',
