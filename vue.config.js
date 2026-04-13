@@ -36,6 +36,7 @@ module.exports = {
     host: '0.0.0.0',
     port: port,
     open: true,
+    allowedHosts: ['all'],
     proxy: {
       // detail: https://cli.vuejs.org/config/#devserver-proxy
       [process.env.VUE_APP_BASE_API]: {
@@ -50,8 +51,7 @@ module.exports = {
         target: baseUrl,
         changeOrigin: true
       }
-    },
-    disableHostCheck: true
+    }
   },
   css: {
     loaderOptions: {
